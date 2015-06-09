@@ -1,0 +1,11 @@
+language: node_js
+node_js:
+    - "0.12"
+before_script:
+    - export DISPLAY=:99.0
+    - sh -e /etc/init.d/xvfb start
+
+notifications:
+    slack:
+      rooms:
+        - buildo:iVeL8b7n4t8Mkif5nJmHmsix#frontends
