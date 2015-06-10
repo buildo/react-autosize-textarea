@@ -1,35 +1,69 @@
+'use strict';
+
+var path = require('path');
 var webpack = require('webpack');
+
+var paths = {
+  SRC: path.resolve(__dirname, 'src'),
+  TEST: path.resolve(__dirname, 'test')
+};
 
 module.exports = function (config) {
   config.set({
 
     browserNoActivityTimeout: 30000,
 
-    browsers: [ process.env.CONTINUOUS_INTEGRATION ? 'Firefox' : 'Chrome'  ],
+    browsers: [ 'Chrome' ],
 
-    singleRun: process.env.CONTINUOUS_INTEGRATION === 'true',
+    singleRun: true,
 
     frameworks: [ 'mocha' ],
 
     files: [
-      'tests.webpack.js'
+      'karma.js'
     ],
 
     preprocessors: {
-      'tests.webpack.js': [ 'webpack', 'sourcemap' ],
-      'lib/**/*.jsx': [ 'coverage' ]
+      'karma.js': [ 'webpack' ],
     },
 
-    reporters: [ (process.env.CONTINUOUS_INTEGRATION ? 'dots' : 'nyan'), 'coverage', 'coveralls' ],
+    reporters: process.env.CONTINUOUS_INTEGRATION ? [ 'bamboo', 'coverage' ] : [ 'dots', 'coverage' ],
+
+    bambooReporter: {
+      filename: 'mocha.json',
+    },
+
+    coverageReporter: {
+      reporters: [
+        process.env.CONTINUOUS_INTEGRATION ?
+        { type: 'lcov', subdir: 'lcov-report' } :
+        { type: 'html', subdir: 'html-report' }
+      ],
+    },
 
     webpack: {
-      devtool: 'inline-source-map',
       module: {
-        loaders: [{
-          test: /\.jsx?$/,
-          exclude: /node_modules/,
-          loader: 'babel-loader'
-        }]
+        loaders: [
+          {
+            test: /\.jsx?$/,
+            loader: 'babel?stage=0&loose',
+            include: [paths.SRC, paths.TEST],
+            exclude: /node_modules/
+          }
+        ],
+        preLoaders: [
+          {
+            test: /\.jsx?$/,
+            loader: 'isparta?{babel: {stage: 0, loose: true}}',
+            include: paths.SRC,
+            exclude: /node_modules/
+          }, {
+            test: /\.jsx?$/,
+            loader: 'eslint',
+            include: paths.SRC,
+            exclude: /node_modules/
+          }
+        ]
       },
       plugins: [
         new webpack.DefinePlugin({
@@ -38,13 +72,9 @@ module.exports = function (config) {
       ]
     },
 
-    webpackServer: {
+    webpackMiddleware: {
       noInfo: true //please don't spam the console when running in karma!
-    },
-
-    coverageReporter: {
-      type: 'lcov',
-      dir: 'coverage/'
     }
+
   });
 };
