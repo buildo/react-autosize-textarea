@@ -1,6 +1,7 @@
-const React = require('react'),
-  autosize = require('autosize'),
-  UPDATE = 'autosize:update',
+import React from 'react';
+import autosize from 'autosize';
+
+const UPDATE = 'autosize:update',
   DESTROY = 'autosize:destroy',
   RESIZED = 'autosize:resized';
 
