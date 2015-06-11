@@ -1,3 +1,5 @@
+[![codecov.io](http://codecov.io/github/buildo/react-textarea-autosize/coverage.svg?branch=master)](http://codecov.io/github/buildo/react-textarea-autosize?branch=master)
+
 # React Autosize Textarea
 A light replacement for built-in textarea component which automaticaly adjusts its height to match the content.
 **It does not require any polyfill**
