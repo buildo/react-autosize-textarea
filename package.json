@@ -10,7 +10,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/buildo/react-textarea-autosize.git"
+    "url": "https://github.com/buildo/react-autosize-textarea.git"
   },
   "keywords": [
     "react",
@@ -23,9 +23,9 @@
   "author": "Francesco Cioria <francesco@buildo.io>",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/buildo/react-textarea-autosize/issues"
+    "url": "https://github.com/buildo/react-autosize-textarea/issues"
   },
-  "homepage": "https://github.com/buildo/react-textarea-autosize",
+  "homepage": "https://github.com/buildo/react-autosize-textarea",
   "devDependencies": {
     "babel": "^5.4.7",
     "babel-eslint": "^3.1.11",

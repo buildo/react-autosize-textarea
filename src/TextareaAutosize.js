@@ -1,5 +1,3 @@
-'use strict';
-
 const React = require('react'),
   autosize = require('autosize'),
   UPDATE = 'autosize:update',
