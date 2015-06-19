@@ -7,11 +7,11 @@ A light replacement for built-in textarea component which automaticaly adjusts i
 This module is based on the very popular autosize script written by Jack Moore. Check its website [here](http://www.jacklmoore.com/autosize/) for more documentation.
 
 ```
-var Textarea = require('react-autosize-textarea');
+var TextareaAutosize = require('react-autosize-textarea');
 
 React.renderComponent(
   <div>
-    <Textarea></Textarea>
+    <TextareaAutosize {...textareaProps} onResize={() => {}} />
   </div>,
   document.body);
 ```
@@ -19,6 +19,14 @@ React.renderComponent(
 ###Install
 ```
 npm install --save react-autosize-textarea
+```
+
+###API
+You can pass any props you're allowed to use with default React textarea (valueLink too).
+
+You can also pass the callback **onResize** which will be triggered at any resize:
+```
+onResize: React.PropTypes.func
 ```
 
 ###Browser Compatibility
