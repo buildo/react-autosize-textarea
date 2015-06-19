@@ -15,7 +15,7 @@ module.exports = function (config) {
 
     browsers: [ 'Chrome' ],
 
-    singleRun: false,
+    singleRun: true,
 
     frameworks: [ 'mocha' ],
 
