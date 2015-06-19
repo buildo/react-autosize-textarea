@@ -1,6 +1,7 @@
-const React = require('react'),
-  autosize = require('autosize'),
-  UPDATE = 'autosize:update',
+import React from 'react';
+import autosize from 'autosize';
+
+const UPDATE = 'autosize:update',
   DESTROY = 'autosize:destroy',
   RESIZED = 'autosize:resized';
 
@@ -30,10 +31,15 @@ const TextareaAutosize = React.createClass({
     this.dispatchEvent(DESTROY);
   },
 
-  dispatchEvent(EVENT_TYPE) {
+  dispatchEvent(EVENT_TYPE, defer) {
     const event = document.createEvent('Event');
     event.initEvent(EVENT_TYPE, true, false);
-    setTimeout(() => this.refs.textarea.getDOMNode().dispatchEvent(event));
+    const dispatch = () => this.refs.textarea.getDOMNode().dispatchEvent(event);
+    if (defer) {
+      setTimeout(dispatch);
+    } else {
+      dispatch();
+    }
   },
 
   getValue(props) {
@@ -52,10 +58,10 @@ const TextareaAutosize = React.createClass({
 
   componentWillReceiveProps(nextProps) {
     if (this.getValue(nextProps) !== this.getValue(this.props)) {
-      this.dispatchEvent(UPDATE);
+      this.dispatchEvent(UPDATE, true);
     }
   },
 
 });
 
-module.exports = TextareaAutosize;
+export default TextareaAutosize;
