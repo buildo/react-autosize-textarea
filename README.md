@@ -16,6 +16,8 @@ React.renderComponent(
   document.body);
 ```
 
+You can see a live demo [here](http://jsfiddle.net/FrancescoCioria/m2rpyfsx/2/)
+
 ###Install
 ```
 npm install --save react-autosize-textarea
