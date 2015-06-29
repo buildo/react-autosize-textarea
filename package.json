@@ -7,8 +7,11 @@
     "test": "./node_modules/karma/bin/karma start",
     "build": "rm -rf lib && mkdir lib && babel --loose --stage 0 --out-dir lib src",
     "lint": "eslint src",
-    "preversion": "npm run lint && npm run test",
-    "prepublish": "npm run build"
+    "preversion": "npm run lint && npm run test && npm run build-examples",
+    "prepublish": "npm run build",
+    "build-examples": "npm run clean && webpack --config examples/webpack.config.build.js --progress",
+    "start": "npm run clean && webpack-dev-server --config examples/webpack.config.js --progress --hot --inline",
+    "clean": "rm -f examples/bundle.js examples/bundle.js.map"
   },
   "repository": {
     "type": "git",
@@ -21,6 +24,7 @@
     "autosize",
     "resize",
     "height",
+    "growing",
     "size"
   ],
   "author": "Francesco Cioria <francesco@buildo.io>",
@@ -44,9 +48,11 @@
     "karma-coverage": "^0.3.1",
     "karma-mocha": "^0.1.10",
     "karma-webpack": "^1.5.1",
+    "lodash": "^3.9.3",
     "mocha": "^2.2.5",
     "require-dir": "^0.3.0",
-    "webpack": "^1.9.10"
+    "webpack": "^1.9.10",
+    "webpack-dev-server": "^1.10.1"
   },
   "peerDependencies": {
     "react": ">= 0.12.x"
