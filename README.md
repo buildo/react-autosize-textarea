@@ -1,12 +1,10 @@
-[![codecov.io](http://codecov.io/github/buildo/react-textarea-autosize/coverage.svg?branch=master)](http://codecov.io/github/buildo/react-textarea-autosize?branch=master)
-
 # React Autosize Textarea
 A light replacement for built-in textarea component which automaticaly adjusts its height to match the content.
 **It does not require any polyfill**
 
-This module is based on the very popular autosize script written by Jack Moore. Check its website [here](http://www.jacklmoore.com/autosize/) for more documentation.
+This module is based on the very popular autosize script written by Jack Moore. Check his website [here](http://www.jacklmoore.com/autosize/) for more documentation.
 
-```
+```jsx
 var TextareaAutosize = require('react-autosize-textarea');
 
 React.renderComponent(
@@ -15,8 +13,9 @@ React.renderComponent(
   </div>,
   document.body);
 ```
+[Live Demo](https://rawgit.com/buildo/react-autosize-textarea/master/examples/index.html)
 
-You can see a live demo [here](http://jsfiddle.net/FrancescoCioria/m2rpyfsx/2/)
+[More Examples](https://github.com/buildo/react-autosize-textarea/tree/master/examples)
 
 ###Install
 ```
@@ -27,7 +26,7 @@ npm install --save react-autosize-textarea
 You can pass any props you're allowed to use with default React textarea (valueLink too).
 
 You can also pass the callback **onResize** which will be triggered at any resize:
-```
+```jsx
 onResize: React.PropTypes.func
 ```
 
