@@ -17,16 +17,22 @@ const TextareaAutosize = React.createClass({
     };
   },
 
+  getTextareaDOMNode() {
+    return this.refs.textarea.nodeType === 1 ?
+      this.refs.textarea :
+      this.refs.textarea.getDOMNode();
+  },
+
   componentDidMount() {
-    autosize(this.refs.textarea.getDOMNode());
+    autosize(this.getTextareaDOMNode());
     if (this.props.onResize) {
-      this.refs.textarea.getDOMNode().addEventListener(RESIZED, this.props.onResize);
+      this.getTextareaDOMNode().addEventListener(RESIZED, this.props.onResize);
     }
   },
 
   componentWillUnmount() {
     if (this.props.onResize) {
-      this.refs.textarea.getDOMNode().removeEventListener(RESIZED, this.props.onResize);
+      this.getTextareaDOMNode().removeEventListener(RESIZED, this.props.onResize);
     }
     this.dispatchEvent(DESTROY);
   },
@@ -34,7 +40,7 @@ const TextareaAutosize = React.createClass({
   dispatchEvent(EVENT_TYPE, defer) {
     const event = document.createEvent('Event');
     event.initEvent(EVENT_TYPE, true, false);
-    const dispatch = () => this.refs.textarea.getDOMNode().dispatchEvent(event);
+    const dispatch = () => this.getTextareaDOMNode().dispatchEvent(event);
     if (defer) {
       setTimeout(dispatch);
     } else {
@@ -60,7 +66,7 @@ const TextareaAutosize = React.createClass({
     if (this.getValue(nextProps) !== this.getValue(this.props)) {
       this.dispatchEvent(UPDATE, true);
     }
-  },
+  }
 
 });
 
