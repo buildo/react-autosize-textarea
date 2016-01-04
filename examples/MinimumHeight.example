@@ -1,0 +1,20 @@
+class Example extends React.Component {
+
+  render() {
+    const textareaStyle = {
+      padding: '10px 8px',
+      border: '1px solid rgba(39,41,43,.15)',
+      borderRadius: 4,
+      fontSize: 15,
+      width: 300
+    };
+
+    return (
+      <div>
+        <h2>Minimum Height</h2>
+        <TextareaAutosize rows='3' style={textareaStyle} placeholder='minimun height is 3 rows'/>
+      </div>
+    );
+  }
+
+}
