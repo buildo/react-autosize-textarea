@@ -4,7 +4,7 @@
   "description": "replacement for built-in textarea which auto resizes itself",
   "main": "index.js",
   "scripts": {
-    "test": "./node_modules/karma/bin/karma start",
+    "test": "npm run build && ./node_modules/karma/bin/karma start",
     "build": "rm -rf lib && mkdir lib && babel --loose --stage 0 --out-dir lib src",
     "lint": "eslint src",
     "preversion": "npm run lint && npm run test && npm run build-examples",
