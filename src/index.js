@@ -1,2 +1,1 @@
-import TextareaAutosize from './TextareaAutosize.js';
-export default TextareaAutosize;
+export default from './TextareaAutosize.js';
