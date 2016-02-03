@@ -1,15 +1,14 @@
 import React from 'react';
 import TextareaAutosize from '../src/TextareaAutosize';
 
-const Example = React.createClass({
+class Example extends React.Component {
 
-  propTypes: {},
-
-  getInitialState() {
-    return {
+  constructor(props) {
+    super(props);
+    this.state = {
       value: 'replace me with your component'
     };
-  },
+  }
 
   render() {
 
@@ -21,22 +20,22 @@ const Example = React.createClass({
     };
 
     return (
-      <div style={{fontFamily: 'sans-serif', margin: 15}}>
+      <div style={{ fontFamily: 'sans-serif', margin: 15 }}>
         <h2>Empty</h2>
-        <TextareaAutosize style={textareaStyle} placeholder='try writing some lines'/>
+        <TextareaAutosize style={textareaStyle} placeholder='try writing some lines' />
 
         <h2>Minimum Height</h2>
-        <TextareaAutosize rows='3' style={textareaStyle} placeholder='minimun height is 3 rows'/>
+        <TextareaAutosize rows='3' style={textareaStyle} placeholder='minimun height is 3 rows' />
 
         <h2>Prefilled</h2>
-        <TextareaAutosize style={textareaStyle} defaultValue={'this\nis\na\nlong\ninitial\ntext'}/>
+        <TextareaAutosize style={textareaStyle} defaultValue={'this\nis\na\nlong\ninitial\ntext'} />
 
         <h2>{'You can compare with this normal react <textarea>'}</h2>
-        <textarea style={textareaStyle} defaultValue={'this\nis\na\nlong\ninitial\ntext'}/>
+        <textarea style={textareaStyle} defaultValue={'this\nis\na\nlong\ninitial\ntext'} />
       </div>
     );
   }
 
-});
+}
 
 React.render(<Example />, document.getElementById('container'));
