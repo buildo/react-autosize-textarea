@@ -5,39 +5,37 @@ const UPDATE = 'autosize:update',
   DESTROY = 'autosize:destroy',
   RESIZED = 'autosize:resized';
 
-const TextareaAutosize = React.createClass({
+export default class TextareaAutosize extends React.Component {
 
-  propTypes: {
+  static propTypes = {
     onResize: React.PropTypes.func
-  },
+  };
 
-  getDefaultProps() {
-    return {
-      rows: 1
-    };
-  },
+  static defaultProps = {
+    rows: 1
+  };
 
-  getTextareaDOMNode() {
-    return this.refs.textarea.nodeType === 1 ?
+  getTextareaDOMNode = () => (
+    this.refs.textarea.nodeType === 1 ?
       this.refs.textarea :
-      this.refs.textarea.getDOMNode();
-  },
+      React.findDOMNode(this.refs.textarea)
+  );
 
   componentDidMount() {
     autosize(this.getTextareaDOMNode());
-    if (this.props.onResize) {
+    if (this.props.onResize){
       this.getTextareaDOMNode().addEventListener(RESIZED, this.props.onResize);
     }
-  },
+  }
 
   componentWillUnmount() {
     if (this.props.onResize) {
       this.getTextareaDOMNode().removeEventListener(RESIZED, this.props.onResize);
     }
     this.dispatchEvent(DESTROY);
-  },
+  }
 
-  dispatchEvent(EVENT_TYPE, defer) {
+  dispatchEvent = (EVENT_TYPE, defer) => {
     const event = document.createEvent('Event');
     event.initEvent(EVENT_TYPE, true, false);
     const dispatch = () => this.getTextareaDOMNode().dispatchEvent(event);
@@ -46,21 +44,18 @@ const TextareaAutosize = React.createClass({
     } else {
       dispatch();
     }
-  },
+  };
 
-  getValue(props) {
-    if (props) {
-      return props.valueLink ? props.valueLink.value : props.value;
-    }
-  },
+  getValue = ({ valueLink, value }) => valueLink ? valueLink.value : value;
 
   render() {
+    const { children, ...props } = this.props;
     return (
-      <textarea {...this.props} ref='textarea'>
-        {this.props.children}
+      <textarea {...props} ref='textarea'>
+        {children}
       </textarea>
     );
-  },
+  }
 
   componentWillReceiveProps(nextProps) {
     if (this.getValue(nextProps) !== this.getValue(this.props)) {
@@ -68,6 +63,4 @@ const TextareaAutosize = React.createClass({
     }
   }
 
-});
-
-export default TextareaAutosize;
+}
