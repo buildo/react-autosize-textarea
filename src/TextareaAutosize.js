@@ -23,7 +23,7 @@ export default class TextareaAutosize extends React.Component {
 
   componentDidMount() {
     autosize(this.getTextareaDOMNode());
-    if (this.props.onResize){
+    if (this.props.onResize) {
       this.getTextareaDOMNode().addEventListener(RESIZED, this.props.onResize);
     }
   }
