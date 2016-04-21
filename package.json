@@ -50,13 +50,15 @@
     "karma-webpack": "^1.7.0",
     "lodash": "^3.10.1",
     "mocha": "^2.4.5",
-    "react": "^0.13.3",
+    "react": "^0.14",
+    "react-dom": "^0.14",
     "require-dir": "^0.3.0",
     "webpack": "^1.12.12",
     "webpack-dev-server": "^1.14.1"
   },
   "peerDependencies": {
-    "react": ">= 0.13.3"
+    "react": "^0.14",
+    "react-dom": "^0.14"
   },
   "dependencies": {
     "autosize": "^3.0.15"
