@@ -1,4 +1,5 @@
 import React from 'react';
+import ReactDOM from 'react-dom';
 import autosize from 'autosize';
 
 const UPDATE = 'autosize:update',
@@ -18,7 +19,7 @@ export default class TextareaAutosize extends React.Component {
   getTextareaDOMNode = () => (
     this.refs.textarea.nodeType === 1 ?
       this.refs.textarea :
-      React.findDOMNode(this.refs.textarea)
+      ReactDOM.findDOMNode(this.refs.textarea)
   );
 
   componentDidMount() {
