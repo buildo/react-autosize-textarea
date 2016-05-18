@@ -1,4 +1,5 @@
 import React from 'react';
+import ReactDOM from 'react-dom';
 import TextareaAutosize from '../src/TextareaAutosize';
 
 class Example extends React.Component {
@@ -38,4 +39,4 @@ class Example extends React.Component {
 
 }
 
-React.render(<Example />, document.getElementById('container'));
+ReactDOM.render(<Example />, document.getElementById('container'));
