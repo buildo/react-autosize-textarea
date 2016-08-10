@@ -50,7 +50,7 @@ export default class TextareaAutosize extends React.Component {
   getValue = ({ valueLink, value }) => valueLink ? valueLink.value : value;
 
   render() {
-    const { children, ...props } = this.props;
+    const { children, onResize, ...props } = this.props;  // eslint-disable-line no-unused-vars
     return (
       <textarea {...props} ref='textarea'>
         {children}
