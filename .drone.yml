@@ -1,0 +1,37 @@
+build:
+  test-and-lint:
+    image: quay.io/buildo/node5-npm3-chrome
+    environment:
+      - NPM_CONFIG_CACHE=/drone/.npm
+      - NPM_CONFIG_LOGLEVEL=warn
+    commands:
+      - npm i
+      - npm run lint
+      - npm test
+
+  generate-readme:
+    image: quay.io/buildo/node5-npm3-chrome
+    commands:
+      - npm run generate-readme
+      - git add src/README.md
+      - if ! git diff-index --quiet HEAD -- src/README.md; then
+          git config --global user.name "nemobot";
+          git config --global user.email "our-bots@buildo.io";
+          git commit -m "Update README [skip CI]";
+          git push origin master;
+        fi
+    when:
+      branch: master
+
+notify:
+  downstream:
+    repositories:
+      - buildo/react-components
+    token: $$NOTIFY_BRC_TOKEN
+    fork: true
+    when:
+      branch: master
+
+cache:
+  mount:
+    - /drone/.npm
