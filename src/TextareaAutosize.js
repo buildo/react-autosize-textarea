@@ -1,16 +1,18 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import autosize from 'autosize';
+import { t, props } from 'tcomb-react';
 
 const UPDATE = 'autosize:update',
   DESTROY = 'autosize:destroy',
   RESIZED = 'autosize:resized';
 
-export default class TextareaAutosize extends React.Component {
+export const Props = {
+  onResize: t.maybe(t.Function)
+};
 
-  static propTypes = {
-    onResize: React.PropTypes.func
-  };
+@props(Props, { strict: false })
+export default class TextareaAutosize extends React.Component {
 
   static defaultProps = {
     rows: 1
