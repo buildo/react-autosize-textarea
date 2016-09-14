@@ -1,6 +1,7 @@
 # TextareaAutosize
 
-A light replacement for built-in textarea component which automaticaly adjusts its height to match the content
+A light replacement for built-in textarea component
+which automaticaly adjusts its height to match the content
 
 ## Props
 |Name|Type|Default|Description|
