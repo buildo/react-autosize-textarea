@@ -11,6 +11,9 @@ export const Props = {
   onResize: t.maybe(t.Function)
 };
 
+/** A light replacement for built-in textarea component which automaticaly adjusts its height to match the content
+ * @param onResize - called whenever the textarea resizes
+ */
 @props(Props, { strict: false })
 export default class TextareaAutosize extends React.Component {
 
