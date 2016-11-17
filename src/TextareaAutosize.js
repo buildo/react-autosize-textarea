@@ -1,5 +1,4 @@
 import React from 'react';
-import ReactDOM from 'react-dom';
 import autosize from 'autosize';
 import { t, props } from 'tcomb-react';
 
