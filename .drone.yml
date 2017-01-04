@@ -23,6 +23,20 @@ build:
     when:
       branch: master
 
+  update-examples:
+    image: quay.io/buildo/node5-npm3-chrome
+    commands:
+      - npm run build-examples
+      - git add examples/bundle.js
+      - if ! git diff-index --quiet HEAD -- examples/bundle.js; then
+          git config --global user.name "nemobot";
+          git config --global user.email "our-bots@buildo.io";
+          git commit -m "Update examples [skip CI]";
+          git push origin master;
+        fi
+    when:
+      branch: master
+
 notify:
   downstream:
     repositories:
