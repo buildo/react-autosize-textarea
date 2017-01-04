@@ -49,7 +49,6 @@
     "karma-coverage": "^0.5.3",
     "karma-mocha": "^0.2.1",
     "karma-webpack": "^1.7.0",
-    "lodash": "^3.10.1",
     "mocha": "^2.4.5",
     "react": "^15.4",
     "react-addons-test-utils": "^0.14.8 || ^15.0.0",
