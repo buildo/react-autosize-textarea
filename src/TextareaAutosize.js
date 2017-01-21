@@ -22,8 +22,7 @@ export const Props = {
 export default class TextareaAutosize extends React.Component {
 
   static defaultProps = {
-    rows: 1,
-    maxRows: 5
+    rows: 1
   };
 
   state = {
