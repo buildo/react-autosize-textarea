@@ -53,15 +53,24 @@ export default class TextareaAutosize extends React.Component {
 
   getValue = ({ valueLink, value }) => valueLink ? valueLink.value : value;
 
-  onChange = e => {
+  hasReachedMaxRows = (value) => {
+    const { maxRows } = this.props;
+
+    const numberOfRows = (value || '').split('\n').length;
+
+    return t.Number.is(maxRows) && numberOfRows >= maxRows;
+  }
+
+  updateMaxHeight = (value) => {
     const {
-      props: { maxRows, onChange },
+      props: { maxRows },
       state: { maxHeight }
     } = this;
 
-    const numberOfRows = e.target.value.split('\n').length;
+    const hasReachedMaxRows = this.hasReachedMaxRows(value);
 
-    if (!maxHeight && numberOfRows >= maxRows) {
+    if (!maxHeight && hasReachedMaxRows) {
+      const numberOfRows = (value || '').split('\n').length;
       const computedStyle = window.getComputedStyle(this.textarea);
 
       const paddingTop = parseFloat(computedStyle.getPropertyValue('padding-top'), 10);
@@ -72,14 +81,24 @@ export default class TextareaAutosize extends React.Component {
       const borderBottomWidth = parseInt(computedStyle.getPropertyValue('border-bottom-width'), 10);
       const verticalBorderWidth = (borderTopWidth || 0) + (borderBottomWidth || 0);
 
+      const height = this.textarea.offsetHeight - verticalPadding - verticalBorderWidth;
+
       this.setState({
-        maxHeight: this.textarea.offsetHeight - verticalPadding - verticalBorderWidth
+        maxHeight: height / numberOfRows * maxRows
       });
-    } else if (maxHeight && numberOfRows < maxRows) {
+
+      return true;
+    } else if (maxHeight && !hasReachedMaxRows) {
       this.setState({ maxHeight: null });
+
+      return false;
     }
 
-    onChange && onChange(e);
+  }
+
+  onChange = e => {
+    this.updateMaxHeight(e.target.value);
+    this.props.onChange && this.props.onChange(e);
   }
 
   getLocals = () => {
