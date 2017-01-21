@@ -1,7 +1,5 @@
-require('babel/register')({
-  extensions: ['.js', '.jsx'],
-  stage: 0,
-  loose: true
+require('babel-core/register')({
+  extensions: ['.js', '.jsx']
 });
 
 const path = require('path');
