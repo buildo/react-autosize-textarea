@@ -7,7 +7,9 @@ const UPDATE = 'autosize:update',
   RESIZED = 'autosize:resized';
 
 export const Props = {
-  onResize: t.maybe(t.Function)
+  onResize: t.maybe(t.Function),
+  meta: t.maybe(t.Any),
+  input: t.maybe(t.Any),
 };
 
 /** A light replacement for built-in textarea component
