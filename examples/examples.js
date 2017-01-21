@@ -33,11 +33,12 @@ class Example extends React.Component {
           placeholder='minimun height is 3 rows'
         />
 
-        <h2>Maximum height is 5 "rows"</h2>
+        <h2>Maximum height is 3 "rows"</h2>
         <TextareaAutosize
-          maxRows={5}
+          maxRows={3}
           style={this.textareaStyle}
           placeholder='maximum height is 5 rows'
+          defaultValue={'this\nis\na\nlong\ninitial\ntext'}
         />
 
         <h2>Prefilled with initial value</h2>
