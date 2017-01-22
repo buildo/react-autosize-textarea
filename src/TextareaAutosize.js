@@ -35,15 +35,11 @@ export default class TextareaAutosize extends React.Component {
     this.dispatchEvent(DESTROY);
   }
 
-  dispatchEvent = (EVENT_TYPE, defer) => {
+  dispatchEvent = (EVENT_TYPE) => {
     const event = document.createEvent('Event');
     event.initEvent(EVENT_TYPE, true, false);
-    const dispatch = () => this.textarea.dispatchEvent(event);
-    if (defer) {
-      setTimeout(dispatch);
-    } else {
-      dispatch();
-    }
+
+    this.textarea.dispatchEvent(event);
   };
 
   getValue = ({ valueLink, value }) => valueLink ? valueLink.value : value;
@@ -57,9 +53,9 @@ export default class TextareaAutosize extends React.Component {
     );
   }
 
-  componentWillReceiveProps(nextProps) {
-    if (this.getValue(nextProps) !== this.getValue(this.props)) {
-      this.dispatchEvent(UPDATE, true);
+  componentDidUpdate(prevProps) {
+    if (this.getValue(prevProps) !== this.getValue(this.props)) {
+      this.dispatchEvent(UPDATE);
     }
   }
 
