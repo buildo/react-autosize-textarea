@@ -5,6 +5,7 @@ import TextareaAutosize from '../src/TextareaAutosize';
 class Example extends React.Component {
 
   textareaStyle = {
+    width: 300,
     padding: '10px 8px',
     border: '1px solid rgba(39, 41, 43, .15)',
     borderRadius: 4,
@@ -27,9 +28,17 @@ class Example extends React.Component {
 
         <h2>Minimum height is 3 "rows"</h2>
         <TextareaAutosize
-          rows='3'
+          rows={3}
           style={this.textareaStyle}
           placeholder='minimun height is 3 rows'
+        />
+
+        <h2>Maximum height is 3 "rows"</h2>
+        <TextareaAutosize
+          maxRows={3}
+          style={this.textareaStyle}
+          placeholder='maximum height is 5 rows'
+          defaultValue={'this\nis\na\nlong\ninitial\ntext'}
         />
 
         <h2>Prefilled with initial value</h2>
