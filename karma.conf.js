@@ -46,7 +46,7 @@ module.exports = function (config) {
         loaders: [
           {
             test: /\.jsx?$/,
-            loader: 'babel?stage=0&loose',
+            loader: 'babel',
             include: [paths.SRC, paths.TEST],
             exclude: /node_modules/
           }
