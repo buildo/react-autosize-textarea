@@ -138,4 +138,4 @@ TextareaAutosize.propTypes = {
   rows: React.PropTypes.number,
   maxRows: React.PropTypes.number,
   onResize: React.PropTypes.func
-}
+};
