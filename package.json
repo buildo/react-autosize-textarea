@@ -68,7 +68,6 @@
     "react-dom": "^0.14.0 || ^15.0.0"
   },
   "dependencies": {
-    "autosize": "^3.0.15",
-    "tcomb-react": "^0.9.3"
+    "autosize": "^3.0.15"
   }
 }

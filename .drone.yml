@@ -9,20 +9,6 @@ build:
       - npm run lint
       - npm test
 
-  generate-readme:
-    image: quay.io/buildo/node5-npm3-chrome
-    commands:
-      - npm run generate-readme
-      - git add src/README.md
-      - if ! git diff-index --quiet HEAD -- src/README.md; then
-          git config --global user.name "nemobot";
-          git config --global user.email "our-bots@buildo.io";
-          git commit -m "Update README [skip CI]";
-          git push origin master;
-        fi
-    when:
-      branch: master
-
   update-examples:
     image: quay.io/buildo/node5-npm3-chrome
     commands:
