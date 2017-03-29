@@ -12,7 +12,7 @@ class Example extends React.Component {
     return (
       <div>
         <h2>Minimum Height</h2>
-        <TextareaAutosize rows='3' style={textareaStyle} placeholder='minimun height is 3 rows'/>
+        <TextareaAutosize rows={3} style={textareaStyle} placeholder='minimun height is 3 rows'/>
       </div>
     );
   }
