@@ -1,16 +1,10 @@
 import React from 'react';
 import autosize from 'autosize';
-import { t, props } from 'tcomb-react';
 
 const UPDATE = 'autosize:update',
   DESTROY = 'autosize:destroy',
   RESIZED = 'autosize:resized';
 
-export const Props = {
-  rows: t.maybe(t.Integer),
-  maxRows: t.maybe(t.Integer),
-  onResize: t.maybe(t.Function)
-};
 
 /** A light replacement for built-in textarea component
  * which automaticaly adjusts its height to match the content
@@ -18,7 +12,6 @@ export const Props = {
  * @param rows - minimum number of visible rows
  * @param maxRows - maximum number of visible rows
  */
-@props(Props, { strict: false })
 export default class TextareaAutosize extends React.Component {
 
   static defaultProps = {
@@ -68,7 +61,7 @@ export default class TextareaAutosize extends React.Component {
 
     const numberOfRows = (value || '').split('\n').length;
 
-    return t.Number.is(maxRows) && numberOfRows >= maxRows;
+    return numberOfRows >= parseInt(maxRows);
   }
 
   updateMaxHeight = (value) => {
@@ -140,3 +133,9 @@ export default class TextareaAutosize extends React.Component {
   }
 
 }
+
+TextareaAutosize.propTypes = {
+  rows: React.PropTypes.number,
+  maxRows: React.PropTypes.number,
+  onResize: React.PropTypes.func
+};
