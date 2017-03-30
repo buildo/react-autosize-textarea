@@ -2,6 +2,13 @@
 
 
 
+## [v0.4.0](https://github.com/buildo/react-autosize-textarea/tree/v0.4.0) (2017-03-30)
+[Full Changelog](https://github.com/buildo/react-autosize-textarea/compare/v0.3.6...v0.4.0)
+
+#### Breaking:
+
+- Remove react-tcomb [#30](https://github.com/buildo/react-autosize-textarea/issues/30)
+
 ## [v0.3.6](https://github.com/buildo/react-autosize-textarea/tree/v0.3.6) (2017-01-22)
 [Full Changelog](https://github.com/buildo/react-autosize-textarea/compare/v0.3.5...v0.3.6)
 
