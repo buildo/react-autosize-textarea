@@ -2,6 +2,13 @@
 
 
 
+## [v0.4.1](https://github.com/buildo/react-autosize-textarea/tree/v0.4.1) (2017-04-10)
+[Full Changelog](https://github.com/buildo/react-autosize-textarea/compare/v0.4.0...v0.4.1)
+
+#### Fixes (bugs & defects):
+
+- Address react 15.5 deprecations regarding PropTypes usage and test-utils [#35](https://github.com/buildo/react-autosize-textarea/issues/35)
+
 ## [v0.4.0](https://github.com/buildo/react-autosize-textarea/tree/v0.4.0) (2017-03-30)
 [Full Changelog](https://github.com/buildo/react-autosize-textarea/compare/v0.3.6...v0.4.0)
 
