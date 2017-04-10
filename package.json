@@ -70,11 +70,11 @@
     "webpack-dev-server": "^1.14.1"
   },
   "peerDependencies": {
-    "prop-types": "^15.5.6",
     "react": "^0.14.0 || ^15.0.0",
     "react-dom": "^0.14.0 || ^15.0.0"
   },
   "dependencies": {
-    "autosize": "^3.0.15"
+    "autosize": "^3.0.15",
+    "prop-types": "^15.5.6"
   }
 }
