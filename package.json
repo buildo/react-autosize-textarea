@@ -61,9 +61,8 @@
     "karma-mocha": "^0.2.1",
     "karma-webpack": "^1.7.0",
     "mocha": "^2.4.5",
-    "react": "^15.4",
-    "react-addons-test-utils": "^0.14.8 || ^15.0.0",
-    "react-dom": "^15.4",
+    "react": "^15.5",
+    "react-dom": "^15.5",
     "react-readme-generator": "0.0.1",
     "require-dir": "^0.3.0",
     "smooth-release": "^8.0.0",
@@ -71,6 +70,7 @@
     "webpack-dev-server": "^1.14.1"
   },
   "peerDependencies": {
+    "prop-types": "^15.5.6",
     "react": "^0.14.0 || ^15.0.0",
     "react-dom": "^0.14.0 || ^15.0.0"
   },

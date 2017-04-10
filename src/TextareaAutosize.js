@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import autosize from 'autosize';
 
 const UPDATE = 'autosize:update',
@@ -135,7 +136,7 @@ export default class TextareaAutosize extends React.Component {
 }
 
 TextareaAutosize.propTypes = {
-  rows: React.PropTypes.number,
-  maxRows: React.PropTypes.number,
-  onResize: React.PropTypes.func
+  rows: PropTypes.number,
+  maxRows: PropTypes.number,
+  onResize: PropTypes.func
 };
