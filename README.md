@@ -53,6 +53,23 @@ In addition to `minHeight`, you can force `TextareaAutosize` to have a minimum n
 <TextareaAutosize rows={3} /> // minimun height is three rows
 ```
 
+#### Refs to DOM nodes
+
+```jsx
+
+class Form extends Component {
+  componentDidMount() {
+    this.textarea.focus()
+  }
+
+  render() {
+    return (
+      <TextareaAutosize innerRef={(ref) => { this.textarea = ref }} />
+    )
+  }
+}
+```
+
 ## Browser Compatibility
 | Chrome        | Firefox       | IE    | Safari | Android |
 | ------------- | ------------- | ----- | ------ | ------- |
