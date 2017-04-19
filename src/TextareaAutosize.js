@@ -118,10 +118,15 @@ export default class TextareaAutosize extends React.Component {
     };
   }
 
+  onInnerRef = (ref) => {
+    if (this.props.innerRef) { this.props.innerRef(ref);}
+    this.textarea = ref;
+  }
+
   render() {
     const { children, ...locals } = this.getLocals();
     return (
-      <textarea {...locals} ref={(ref) => { this.textarea = ref; }}>
+      <textarea {...locals} ref={this.onInnerRef}>
         {children}
       </textarea>
     );
