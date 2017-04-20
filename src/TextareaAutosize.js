@@ -118,7 +118,7 @@ export default class TextareaAutosize extends React.Component {
 
   getLocals = () => {
     const {
-      props: { onResize, maxRows, onChange, style, ...props }, // eslint-disable-line no-unused-vars
+      props: { onResize, maxRows, onChange, style, innerRef, ...props }, // eslint-disable-line no-unused-vars
       state: { maxHeight },
       saveDOMNodeRef
     } = this;
