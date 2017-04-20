@@ -53,6 +53,29 @@ In addition to `minHeight`, you can force `TextareaAutosize` to have a minimum n
 <TextareaAutosize rows={3} /> // minimun height is three rows
 ```
 
+#### Refs to DOM nodes
+In order to manually call `textarea`'s DOM element functions like `focus()` or `blur()`, you need a ref to the DOM node.
+
+You get one by using the prop `ref` and `ReactDOM.findDOMNode` as shown in the example below.
+
+NOTE: As `TextareaAutosize` is not a native React component (`input`, `div`, `textarea` ...), `ref` will return you the instance of the class. You have to use `ReactDOM.findDOMNode` to get a pointer to the DOM element.
+
+```jsx
+class Form extends React.Component {
+  componentDidMount() {
+    this.textarea.focus();
+  }
+
+  render() {
+    return (
+      <TextareaAutosize
+        ref={(ref) => { this.textarea = ReactDOM.findDOMNode(ref); }}
+      />
+    );
+  }
+}
+```
+
 ## Browser Compatibility
 | Chrome        | Firefox       | IE    | Safari | Android |
 | ------------- | ------------- | ----- | ------ | ------- |
