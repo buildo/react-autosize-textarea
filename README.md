@@ -25,9 +25,23 @@ npm install --save react-autosize-textarea
 
 
 ## Usage
-You can pass any prop you're allowed to use with the default React textarea (`valueLink` too).
+`TextareaAutosize` is perfectly compatible with ReactJS default one, so to get started you can simply replace any `<textarea></textarea>` with `<TextareaAutosize></TextareaAutosize>`. It's that easy :)
 
-You can also pass the optional callback **onResize** which will be triggered at any resize with the `autosize:resized` event object:
+### Props
+You can pass any prop you're allowed to use with the default React `textarea` (`valueLink` too).
+
+In addition to them, `TextareaAutosize` comes with some optional custom `props` to facilitate its usage:
+
+|Name|Type|Default|Description|
+|----|----|-------|-----------|
+| **onResize** | <code>Function</code> |  | *optional*. Called whenever the textarea resizes |
+| **rows** | <code>Number</code> |  | *optional*. Minimum number of visible rows |
+| **maxRows** | <code>Number</code> |  | *optional*. Maximum number of visible rows |
+
+
+#### `onResize`
+
+Sometimes you may need to react any time `TextareaAutosize` resizes itself. To do so, you should use the optional callback **onResize** which will be triggered at any resize with the `autosize:resized` event object:
 
 ```jsx
 function onResize(event) {
