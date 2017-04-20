@@ -53,6 +53,12 @@ In addition to `minHeight`, you can force `TextareaAutosize` to have a minimum n
 <TextareaAutosize rows={3} /> // minimun height is three rows
 ```
 
+In addition to `maxHeight`, you can force `TextareaAutosize` to have a maximum number of rows by passing the prop `maxRows`:
+
+```jsx
+<TextareaAutosize maxRows={3} /> // maximum height is three rows
+```
+
 #### Refs to DOM nodes
 In order to manually call `textarea`'s DOM element functions like `focus()` or `blur()`, you need a ref to the DOM node.
 
