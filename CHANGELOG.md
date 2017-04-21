@@ -2,6 +2,14 @@
 
 
 
+## [v0.4.3](https://github.com/buildo/react-autosize-textarea/tree/v0.4.3) (2017-04-21)
+[Full Changelog](https://github.com/buildo/react-autosize-textarea/compare/v0.4.2...v0.4.3)
+
+#### New features:
+
+- Add prop `innerRef` to access textarea DOM node [#40](https://github.com/buildo/react-autosize-textarea/issues/40)
+- Warning: This synthetic event is reused for performance reasons [#38](https://github.com/buildo/react-autosize-textarea/issues/38)
+
 ## [v0.4.2](https://github.com/buildo/react-autosize-textarea/tree/v0.4.2) (2017-04-10)
 [Full Changelog](https://github.com/buildo/react-autosize-textarea/compare/v0.4.1...v0.4.2)
 
