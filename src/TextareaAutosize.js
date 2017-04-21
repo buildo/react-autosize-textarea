@@ -12,6 +12,7 @@ const UPDATE = 'autosize:update',
  * @param onResize - called whenever the textarea resizes
  * @param rows - minimum number of visible rows
  * @param maxRows - maximum number of visible rows
+ * @param innerRef - called with the ref to the DOM node
  */
 export default class TextareaAutosize extends React.Component {
 
@@ -105,23 +106,35 @@ export default class TextareaAutosize extends React.Component {
     this.props.onChange && this.props.onChange(e);
   }
 
+  saveDOMNodeRef = ref => {
+    const { innerRef } = this.props;
+
+    if (innerRef) {
+      innerRef(ref);
+    }
+
+    this.textarea = ref;
+  }
+
   getLocals = () => {
     const {
-      props: { onResize, maxRows, onChange, style, ...props }, // eslint-disable-line no-unused-vars
-      state: { maxHeight }
+      props: { onResize, maxRows, onChange, style, innerRef, ...props }, // eslint-disable-line no-unused-vars
+      state: { maxHeight },
+      saveDOMNodeRef
     } = this;
 
     return {
       ...props,
+      saveDOMNodeRef,
       style: maxHeight ? { ...style, maxHeight } : style,
       onChange: this.onChange
     };
   }
 
   render() {
-    const { children, ...locals } = this.getLocals();
+    const { children, saveDOMNodeRef, ...locals } = this.getLocals();
     return (
-      <textarea {...locals} ref={(ref) => { this.textarea = ref; }}>
+      <textarea {...locals} ref={saveDOMNodeRef}>
         {children}
       </textarea>
     );
@@ -138,5 +151,6 @@ export default class TextareaAutosize extends React.Component {
 TextareaAutosize.propTypes = {
   rows: PropTypes.number,
   maxRows: PropTypes.number,
-  onResize: PropTypes.func
+  onResize: PropTypes.func,
+  innerRef: PropTypes.func
 };
