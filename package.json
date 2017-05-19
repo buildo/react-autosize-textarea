@@ -2,7 +2,7 @@
   "name": "react-autosize-textarea",
   "version": "0.4.3",
   "description": "replacement for built-in textarea which auto resizes itself",
-  "main": "lib",
+  "main": "index.js",
   "scripts": {
     "test": "npm run build && ./node_modules/karma/bin/karma start",
     "build": "rm -rf lib && mkdir lib && babel src -d lib",
