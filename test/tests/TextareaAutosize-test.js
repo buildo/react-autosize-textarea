@@ -1,7 +1,7 @@
 import React from 'react';
 import TestUtils from 'react-dom/test-utils';
 import expect from 'expect';
-import TextareaAutosize from '../../lib';
+import TextareaAutosize from '../../index';
 
 
 const renderTextarea = () => {
