@@ -2,6 +2,17 @@
 
 
 
+## [v0.4.4](https://github.com/buildo/react-autosize-textarea/tree/v0.4.4) (2017-06-05)
+[Full Changelog](https://github.com/buildo/react-autosize-textarea/compare/v0.4.3...v0.4.4)
+
+#### Fixes (bugs & defects):
+
+- linked module fails to load in webpack [#48](https://github.com/buildo/react-autosize-textarea/issues/48)
+
+#### New features:
+
+- typescript support [#46](https://github.com/buildo/react-autosize-textarea/issues/46)
+
 ## [v0.4.3](https://github.com/buildo/react-autosize-textarea/tree/v0.4.3) (2017-04-21)
 [Full Changelog](https://github.com/buildo/react-autosize-textarea/compare/v0.4.2...v0.4.3)
 
