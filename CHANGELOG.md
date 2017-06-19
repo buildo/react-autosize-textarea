@@ -2,6 +2,13 @@
 
 
 
+## [v0.4.5](https://github.com/buildo/react-autosize-textarea/tree/v0.4.5) (2017-06-19)
+[Full Changelog](https://github.com/buildo/react-autosize-textarea/compare/v0.4.4...v0.4.5)
+
+#### Fixes (bugs & defects):
+
+- Max rows not working with text without breakline char [#50](https://github.com/buildo/react-autosize-textarea/issues/50)
+
 ## [v0.4.4](https://github.com/buildo/react-autosize-textarea/tree/v0.4.4) (2017-06-05)
 [Full Changelog](https://github.com/buildo/react-autosize-textarea/compare/v0.4.3...v0.4.4)
 
