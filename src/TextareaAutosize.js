@@ -92,7 +92,7 @@ export default class TextareaAutosize extends React.Component {
     return {
       ...props,
       saveDOMNodeRef,
-      style: maxHeight ? { ...style, maxHeight, padding: 0 } : style,
+      style: maxHeight ? { ...style, maxHeight } : style,
       onChange: this.onChange
     };
   }
