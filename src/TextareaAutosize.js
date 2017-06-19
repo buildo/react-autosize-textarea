@@ -1,6 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import autosize from 'autosize';
+import getLineHeight from 'line-height';
 
 const UPDATE = 'autosize:update',
   DESTROY = 'autosize:destroy',
@@ -25,16 +26,15 @@ export default class TextareaAutosize extends React.Component {
   }
 
   componentDidMount() {
-    const { value, defaultValue, onResize } = this.props;
+    const { onResize, maxRows } = this.props;
 
-    autosize(this.textarea);
-
-    if (this.hasReachedMaxRows(value || defaultValue)) {
-      this.updateMaxHeight(value || defaultValue);
+    if (typeof maxRows === 'number') {
+      this.updateMaxHeight();
 
       // this trick is needed to force "autosize" to activate the scrollbar
-      this.dispatchEvent(DESTROY);
       setTimeout(() => autosize(this.textarea));
+    } else {
+      autosize(this.textarea);
     }
 
     if (onResize) {
@@ -66,39 +66,14 @@ export default class TextareaAutosize extends React.Component {
     return numberOfRows >= parseInt(maxRows);
   }
 
-  updateMaxHeight = (value) => {
-    const {
-      props: { maxRows },
-      state: { maxHeight }
-    } = this;
+  updateMaxHeight = () => {
+    const { maxRows } = this.props;
 
-    const hasReachedMaxRows = this.hasReachedMaxRows(value);
+    this.setState({
+      maxHeight: getLineHeight(this.textarea) * maxRows
+    });
 
-    if (!maxHeight && hasReachedMaxRows) {
-      const numberOfRows = (value || '').split('\n').length;
-      const computedStyle = window.getComputedStyle(this.textarea);
-
-      const paddingTop = parseFloat(computedStyle.getPropertyValue('padding-top'), 10);
-      const paddingBottom = parseFloat(computedStyle.getPropertyValue('padding-top'), 10);
-      const verticalPadding = (paddingTop || 0) + (paddingBottom || 0);
-
-      const borderTopWidth = parseInt(computedStyle.getPropertyValue('border-top-width'), 10);
-      const borderBottomWidth = parseInt(computedStyle.getPropertyValue('border-bottom-width'), 10);
-      const verticalBorderWidth = (borderTopWidth || 0) + (borderBottomWidth || 0);
-
-      const height = this.textarea.offsetHeight - verticalPadding - verticalBorderWidth;
-
-      this.setState({
-        maxHeight: height / numberOfRows * maxRows
-      });
-
-      return true;
-    } else if (maxHeight && !hasReachedMaxRows) {
-      this.setState({ maxHeight: null });
-
-      return false;
-    }
-
+    return true;
   }
 
   onChange = e => {
@@ -126,7 +101,7 @@ export default class TextareaAutosize extends React.Component {
     return {
       ...props,
       saveDOMNodeRef,
-      style: maxHeight ? { ...style, maxHeight } : style,
+      style: maxHeight ? { ...style, maxHeight, padding: 0 } : style,
       onChange: this.onChange
     };
   }
