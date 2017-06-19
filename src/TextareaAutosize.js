@@ -22,14 +22,14 @@ export default class TextareaAutosize extends React.Component {
   };
 
   state = {
-    maxHeight: null
+    lineHeight: null
   }
 
   componentDidMount() {
     const { onResize, maxRows } = this.props;
 
     if (typeof maxRows === 'number') {
-      this.updateMaxHeight();
+      this.updateLineHeight();
 
       // this trick is needed to force "autosize" to activate the scrollbar
       setTimeout(() => autosize(this.textarea));
@@ -58,14 +58,10 @@ export default class TextareaAutosize extends React.Component {
 
   getValue = ({ valueLink, value }) => valueLink ? valueLink.value : value;
 
-  updateMaxHeight = () => {
-    const { maxRows } = this.props;
-
+  updateLineHeight = () => {
     this.setState({
-      maxHeight: getLineHeight(this.textarea) * maxRows
+      lineHeight: getLineHeight(this.textarea)
     });
-
-    return true;
   }
 
   onChange = e => {
@@ -85,9 +81,11 @@ export default class TextareaAutosize extends React.Component {
   getLocals = () => {
     const {
       props: { onResize, maxRows, onChange, style, innerRef, ...props }, // eslint-disable-line no-unused-vars
-      state: { maxHeight },
+      state: { lineHeight },
       saveDOMNodeRef
     } = this;
+
+    const maxHeight = maxRows && lineHeight ? lineHeight * maxRows : null;
 
     return {
       ...props,
