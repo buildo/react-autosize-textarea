@@ -10,17 +10,19 @@ const renderTextarea = () => {
   return textarea;
 };
 
-describe('TextareaAutosize', function() {
+describe('TextareaAutosize', () => {
 
-  it('should be displayed', function() {
+  it('should be displayed', () => {
     const textarea = renderTextarea();
     const txt = TestUtils.scryRenderedDOMComponentsWithClass(textarea, 'textarea-autosize');
     expect(txt.length).toBe(1, 'textarea is not displayed');
   });
 
-  it('should display initial value', function() {
-    const initialValue = 'Initial Value'
-    const component = <TextareaAutosize className='textarea-autosize' defaultValue={initialValue} />;
+  it('should display initial value', () => {
+    const initialValue = 'Initial Value';
+    const component = (
+      <TextareaAutosize className='textarea-autosize' defaultValue={initialValue} />
+    );
     const textarea = TestUtils.renderIntoDocument(component);
     const txt = TestUtils.findRenderedDOMComponentWithClass(textarea, 'textarea-autosize');
     const value = txt.innerHTML;
