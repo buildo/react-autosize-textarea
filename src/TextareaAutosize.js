@@ -69,7 +69,6 @@ export default class TextareaAutosize extends React.Component {
   }
 
   onChange = e => {
-    this.updateMaxHeight(e.target.value);
     this.props.onChange && this.props.onChange(e);
   }
 
