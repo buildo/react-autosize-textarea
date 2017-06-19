@@ -58,14 +58,6 @@ export default class TextareaAutosize extends React.Component {
 
   getValue = ({ valueLink, value }) => valueLink ? valueLink.value : value;
 
-  hasReachedMaxRows = (value) => {
-    const { maxRows } = this.props;
-
-    const numberOfRows = (value || '').split('\n').length;
-
-    return numberOfRows >= parseInt(maxRows);
-  }
-
   updateMaxHeight = () => {
     const { maxRows } = this.props;
 
