@@ -65,6 +65,7 @@ export default class TextareaAutosize extends React.Component {
   }
 
   onChange = e => {
+    this.currentValue = e.target.value;
     this.props.onChange && this.props.onChange(e);
   }
 
@@ -104,8 +105,8 @@ export default class TextareaAutosize extends React.Component {
     );
   }
 
-  componentDidUpdate(prevProps) {
-    if (this.getValue(prevProps) !== this.getValue(this.props)) {
+  componentDidUpdate() {
+    if (this.getValue(this.props) !== this.currentValue) {
       this.dispatchEvent(UPDATE);
     }
   }
