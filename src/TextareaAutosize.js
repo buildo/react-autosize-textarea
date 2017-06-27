@@ -97,11 +97,9 @@ export default class TextareaAutosize extends React.Component {
   }
 
   render() {
-    const { children, saveDOMNodeRef, ...locals } = this.getLocals();
+    const { saveDOMNodeRef, ...locals } = this.getLocals();
     return (
-      <textarea {...locals} ref={saveDOMNodeRef}>
-        {children}
-      </textarea>
+      <textarea {...locals} ref={saveDOMNodeRef} />
     );
   }
 
