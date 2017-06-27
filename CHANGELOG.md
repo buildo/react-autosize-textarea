@@ -2,6 +2,13 @@
 
 
 
+## [v0.4.6](https://github.com/buildo/react-autosize-textarea/tree/v0.4.6) (2017-06-27)
+[Full Changelog](https://github.com/buildo/react-autosize-textarea/compare/v0.4.5...v0.4.6)
+
+#### Fixes (bugs & defects):
+
+- `this.dispatchEvent(UPDATE)` called too often [#54](https://github.com/buildo/react-autosize-textarea/issues/54)
+
 ## [v0.4.5](https://github.com/buildo/react-autosize-textarea/tree/v0.4.5) (2017-06-19)
 [Full Changelog](https://github.com/buildo/react-autosize-textarea/compare/v0.4.4...v0.4.5)
 
