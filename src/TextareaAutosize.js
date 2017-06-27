@@ -2,6 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import autosize from 'autosize';
 import getLineHeight from 'line-height';
+import debounce from 'lodash/debounce';
 
 const UPDATE = 'autosize:update',
   DESTROY = 'autosize:destroy',
@@ -49,12 +50,12 @@ export default class TextareaAutosize extends React.Component {
     this.dispatchEvent(DESTROY);
   }
 
-  dispatchEvent = (EVENT_TYPE) => {
+  dispatchEvent = debounce((EVENT_TYPE) => {
     const event = document.createEvent('Event');
     event.initEvent(EVENT_TYPE, true, false);
 
     this.textarea.dispatchEvent(event);
-  };
+  }, 300, { maxWait: 500 })
 
   getValue = ({ valueLink, value }) => valueLink ? valueLink.value : value;
 
@@ -105,11 +106,11 @@ export default class TextareaAutosize extends React.Component {
   }
 
   componentDidUpdate(prevProps) {
-    if (this.getValue(prevProps) !== this.getValue(this.props)) {
+    const currentValue = this.getValue(this.props);
+    if (this.getValue(prevProps) !== currentValue) {
       this.dispatchEvent(UPDATE);
     }
   }
-
 }
 
 TextareaAutosize.propTypes = {
