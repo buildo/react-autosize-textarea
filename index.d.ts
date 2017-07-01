@@ -6,4 +6,4 @@ export interface TextareaAutosizeProps extends React.HTMLAttributes<HTMLTextArea
   innerRef?: (textarea: HTMLTextAreaElement) => void
 }
 
-export default class TextareaAutosize extends React.Component<TextareaAutosizeProps, void> {}
+export default class TextareaAutosize extends React.Component<TextareaAutosizeProps> {}
