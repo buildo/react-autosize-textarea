@@ -2,6 +2,13 @@
 
 
 
+## [v0.4.7](https://github.com/buildo/react-autosize-textarea/tree/v0.4.7) (2017-07-03)
+[Full Changelog](https://github.com/buildo/react-autosize-textarea/compare/v0.4.6...v0.4.7)
+
+#### Fixes (bugs & defects):
+
+- JSX element type 'TextareaAutosize' is not a constructor function for JSX elements. [#56](https://github.com/buildo/react-autosize-textarea/issues/56)
+
 ## [v0.4.6](https://github.com/buildo/react-autosize-textarea/tree/v0.4.6) (2017-06-27)
 [Full Changelog](https://github.com/buildo/react-autosize-textarea/compare/v0.4.5...v0.4.6)
 
