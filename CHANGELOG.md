@@ -2,6 +2,13 @@
 
 
 
+## [v0.4.8](https://github.com/buildo/react-autosize-textarea/tree/v0.4.8) (2017-07-18)
+[Full Changelog](https://github.com/buildo/react-autosize-textarea/compare/v0.4.7...v0.4.8)
+
+#### Fixes (bugs & defects):
+
+- Typescript: compile time error for native textarea attributes [#59](https://github.com/buildo/react-autosize-textarea/issues/59)
+
 ## [v0.4.7](https://github.com/buildo/react-autosize-textarea/tree/v0.4.7) (2017-07-03)
 [Full Changelog](https://github.com/buildo/react-autosize-textarea/compare/v0.4.6...v0.4.7)
 
