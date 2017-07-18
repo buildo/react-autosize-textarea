@@ -44,7 +44,7 @@
   "typings": "react-autosize-textarea.d.ts",
   "homepage": "https://github.com/buildo/react-autosize-textarea",
   "devDependencies": {
-    "@types/react": "^15.0.24",
+    "@types/react": "^15.0.38",
     "babel-cli": "^6.11.4",
     "babel-core": "^6.21.0",
     "babel-loader": "^6.2.4",
