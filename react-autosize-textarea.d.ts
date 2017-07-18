@@ -2,7 +2,7 @@
 
 import * as React from 'react';
 
-export interface TextareaAutosizeProps extends React.HTMLAttributes<HTMLTextAreaElement> {
+export interface TextareaAutosizeProps extends React.TextareaHTMLAttributes<HTMLTextAreaElement> {
   onResize?: (e: React.SyntheticEvent<Event>) => void,
   // rows is already typed in `React.HTMLAttributes<HTMLTextAreaElement>`
   maxRows?: number,
