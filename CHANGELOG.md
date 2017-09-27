@@ -8,7 +8,6 @@
 #### New features:
 
 - Upgrade peerDeps to react & react-dom 16 [#66](https://github.com/buildo/react-autosize-textarea/issues/66)
-- Uncaught Error: Module build failed: Error: ENOENT: no such file or directory,  [#62](https://github.com/buildo/react-autosize-textarea/issues/62)
 
 ## [v0.4.8](https://github.com/buildo/react-autosize-textarea/tree/v0.4.8) (2017-07-18)
 [Full Changelog](https://github.com/buildo/react-autosize-textarea/compare/v0.4.7...v0.4.8)
