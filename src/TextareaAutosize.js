@@ -36,14 +36,16 @@ export default class TextareaAutosize extends React.Component {
         try {
           autosize(this.textarea);
         } catch (e) {
-          console.error('Autosize Error:', e);
+          // window.getComputedStyle throws Access is denied on IE
+          // console.error('Autosize Error:', e);
         }
       });
     } else {
       try {
         autosize(this.textarea);
       } catch (e) {
-        console.error('Autosize Error:', e);
+        // window.getComputedStyle throws Access is denied on IE
+        // console.error('Autosize Error:', e);
       }
     }
 
