@@ -32,9 +32,21 @@ export default class TextareaAutosize extends React.Component {
       this.updateLineHeight();
 
       // this trick is needed to force "autosize" to activate the scrollbar
-      setTimeout(() => autosize(this.textarea));
+      setTimeout(() => {
+        try {
+          autosize(this.textarea);
+        } catch (e) {
+          // window.getComputedStyle throws Access is denied on IE
+          // console.error('Autosize Error:', e);
+        }
+      });
     } else {
-      autosize(this.textarea);
+      try {
+        autosize(this.textarea);
+      } catch (e) {
+        // window.getComputedStyle throws Access is denied on IE
+        // console.error('Autosize Error:', e);
+      }
     }
 
     if (onResize) {
