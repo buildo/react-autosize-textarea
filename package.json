@@ -6,7 +6,7 @@
   "scripts": {
     "test": "jest",
     "build": "rm -rf lib && mkdir lib && tsc",
-    "preversion": "npm run lint && npm run test && npm run build-examples",
+    "preversion": "npm run test",
     "prepublish": "npm run build",
     "start": "styleguidist server",
     "release-version": "smooth-release --validations --npm-version --changelog --gh-release --npm-publish"
@@ -65,9 +65,9 @@
     "react-dom": "^0.14.0 || ^15.0.0 || ^16.0.0"
   },
   "dependencies": {
-    "@types/autosize": "^3.0.6",
-    "@types/prop-types": "^15.5.2",
-    "@types/react": "^15.6.7",
+    "@types/autosize": "3.0.6",
+    "@types/prop-types": "15.5.2",
+    "@types/react": "15.6.7",
     "autosize": "^3.0.15",
     "line-height": "^0.3.1",
     "prop-types": "^15.5.6"
