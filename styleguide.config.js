@@ -20,8 +20,7 @@ module.exports = {
   }],
   showCode: true,
   showUsage: false, // show props by default
-  getExampleFilename(c) {
-    console.log(c);
+  getExampleFilename() {
     return path.resolve(__dirname, 'examples/Examples.md');
   }
 };
