@@ -1,7 +1,9 @@
 import * as React from 'react';
 import * as PropTypes from 'prop-types';
 import * as autosize from 'autosize';
-import getLineHeight from 'line-height';
+import * as _getLineHeight from 'line-height';
+
+const getLineHeight = _getLineHeight as (element: HTMLElement) => number | null;
 
 export type TextareaAutosizeRequiredProps = React.TextareaHTMLAttributes<HTMLTextAreaElement> & {
   onResize?: (e: React.SyntheticEvent<Event>) => void,
@@ -109,7 +111,7 @@ export default class TextareaAutosize extends React.Component<TextareaAutosize.P
 
   getLocals = () => {
     const {
-      props: { onResize, maxRows, onChange, style, innerRef, ...props }, // eslint-disable-line no-unused-vars
+      props: { onResize, maxRows, onChange, style, innerRef, ...props },
       state: { lineHeight },
       saveDOMNodeRef
     } = this;
