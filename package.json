@@ -9,6 +9,7 @@
     "preversion": "npm run test",
     "prepublish": "npm run build",
     "start": "styleguidist server",
+    "typecheck": "tsc --noEmit",
     "release-version": "smooth-release --validations --npm-version --changelog --gh-release --npm-publish"
   },
   "repository": {

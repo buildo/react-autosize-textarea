@@ -3,6 +3,7 @@ build:
     image: node:8
     commands:
       - yarn --no-lockfile
+      - yarn typecheck
       - yarn test
 
 # notify:
