@@ -1,0 +1,10 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`TextareaAutosize renders correctly 1`] = `
+<textarea
+  defaultValue="Initial Value"
+  onChange={[Function]}
+  rows={1}
+  style={undefined}
+/>
+`;

@@ -4,16 +4,12 @@
   "description": "replacement for built-in textarea which auto resizes itself",
   "main": "lib",
   "scripts": {
-    "test": "npm run build && ./node_modules/karma/bin/karma start",
-    "build": "rm -rf lib && mkdir lib && babel src -d lib",
-    "lint": "scriptoni lint src examples/examples.js",
-    "lint-fix": "scriptoni lint --fix src examples/examples.js",
-    "preversion": "npm run lint && npm run test && npm run build-examples",
+    "test": "jest",
+    "build": "rm -rf lib && mkdir lib && tsc",
+    "preversion": "npm run test",
     "prepublish": "npm run build",
-    "build-examples": "npm run clean && webpack --config examples/webpack.config.build.babel.js --progress",
-    "start": "webpack-dev-server --config examples/webpack.config.babel.js --progress --hot --inline",
-    "clean": "rm -f examples/bundle.js examples/bundle.js.map",
-    "generate-readme": "node ./generateReadme.js",
+    "start": "styleguidist server",
+    "typecheck": "tsc --noEmit",
     "release-version": "smooth-release --validations --npm-version --changelog --gh-release --npm-publish"
   },
   "repository": {
@@ -39,45 +35,54 @@
     "lib",
     "src",
     "examples",
-    "react-autosize-textarea.d.ts"
+    "styleguide"
   ],
-  "typings": "react-autosize-textarea.d.ts",
   "homepage": "https://github.com/buildo/react-autosize-textarea",
   "devDependencies": {
-    "@types/react": "^15.0.38",
-    "babel-cli": "^6.11.4",
-    "babel-core": "^6.21.0",
-    "babel-loader": "^6.2.4",
-    "babel-plugin-transform-decorators-legacy": "^1.3.4",
-    "babel-preset-es2015": "^6.13.2",
-    "babel-preset-react": "^6.11.1",
-    "babel-preset-stage-0": "^6.5.0",
-    "eslint-loader": "^1.6.1",
-    "expect": "^1.13.4",
-    "isparta-loader": "^2.0.0",
-    "karma": "^0.13.19",
-    "karma-bamboo-reporter": "^0.1.2",
-    "karma-chrome-launcher": "^0.2.2",
-    "karma-coverage": "^0.5.3",
-    "karma-mocha": "^0.2.1",
-    "karma-webpack": "^1.7.0",
-    "mocha": "^2.4.5",
-    "react": "^15.5",
-    "react-dom": "^15.5",
-    "react-readme-generator": "0.0.1",
+    "@types/jest": "21.1.8",
+    "babel-loader": "^7.1.2",
+    "babel-preset-buildo": "^0.1.1",
+    "css-loader": "^0.28.5",
+    "file-loader": "^1.1.5",
+    "jest": "^21.2.1",
+    "node-sass": "4.5.2",
+    "progress-bar-webpack-plugin": "^1.10.0",
+    "raw-loader": "^0.5.1",
+    "react": "^16",
+    "react-docgen-typescript": "^1.1.0",
+    "react-dom": "^16",
+    "react-styleguidist": "^6.0.33",
+    "react-test-renderer": "^16.2.0",
     "require-dir": "^0.3.0",
-    "scriptoni": "^0.4.3",
+    "sass-loader": "^6.0.6",
     "smooth-release": "^8.0.0",
-    "webpack": "^1.12.12",
-    "webpack-dev-server": "^1.14.1"
+    "ts-jest": "^21.2.3",
+    "ts-loader": "^2.3.3",
+    "typescript": "^2.4.2",
+    "url-loader": "^0.5.9",
+    "webpack": "3.5.5"
   },
   "peerDependencies": {
     "react": "^0.14.0 || ^15.0.0 || ^16.0.0",
     "react-dom": "^0.14.0 || ^15.0.0 || ^16.0.0"
   },
   "dependencies": {
+    "@types/autosize": "3.0.6",
+    "@types/prop-types": "15.5.2",
+    "@types/react": "15.6.7",
     "autosize": "^3.0.15",
     "line-height": "^0.3.1",
     "prop-types": "^15.5.6"
+  },
+  "jest": {
+    "transform": {
+      "^.+\\.tsx?$": "<rootDir>/node_modules/ts-jest/preprocessor.js"
+    },
+    "testRegex": "(.*[.](test))[.](tsx?)$",
+    "moduleFileExtensions": [
+      "js",
+      "ts",
+      "tsx"
+    ]
   }
 }
