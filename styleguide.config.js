@@ -6,7 +6,7 @@ module.exports = {
 
   require: [
     // "global" setup + sass imports
-    path.resolve(__dirname, 'styleguide/setup.js')
+    path.resolve(__dirname, 'styleguide/setup.ts')
   ],
 
   // content
