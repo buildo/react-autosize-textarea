@@ -2,6 +2,17 @@
 
 
 
+## [v1.0.0](https://github.com/buildo/react-autosize-textarea/tree/v1.0.0) (2017-12-03)
+[Full Changelog](https://github.com/buildo/react-autosize-textarea/compare/v0.4.9...v1.0.0)
+
+#### Breaking:
+
+- Refactor in TypeScript! [#75](https://github.com/buildo/react-autosize-textarea/issues/75)
+
+#### New features:
+
+- Error in React 16: innerRef passed to the DOM element. [#73](https://github.com/buildo/react-autosize-textarea/issues/73)
+
 ## [v0.4.9](https://github.com/buildo/react-autosize-textarea/tree/v0.4.9) (2017-09-27)
 [Full Changelog](https://github.com/buildo/react-autosize-textarea/compare/v0.4.8...v0.4.9)
 
