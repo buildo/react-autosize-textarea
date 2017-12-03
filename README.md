@@ -19,10 +19,7 @@ npm install --save react-autosize-textarea
 ```
 
 ## Demo
-[Live Demo](https://rawgit.com/buildo/react-autosize-textarea/master/examples/index.html)
-
-[More Examples](https://github.com/buildo/react-autosize-textarea/tree/master/examples)
-
+[Live Examples](http://react-components.buildo.io/#textareaautosize)
 
 ## Usage
 `TextareaAutosize` is perfectly compatible with ReactJS default one, so to get started you can simply replace any `<textarea></textarea>` with `<TextareaAutosize></TextareaAutosize>`. It's that easy :)
