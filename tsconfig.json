@@ -22,7 +22,6 @@
   },
   "include": [
     "src/*",
-    "styleguide/*",
     "typings"
   ]
 }
