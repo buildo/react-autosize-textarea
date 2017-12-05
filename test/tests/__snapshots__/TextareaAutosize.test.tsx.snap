@@ -8,3 +8,12 @@ exports[`TextareaAutosize renders correctly 1`] = `
   style={undefined}
 />
 `;
+
+exports[`build build script generates every needed file 1`] = `
+Array [
+  "TextareaAutosize.d.ts",
+  "TextareaAutosize.js",
+  "index.d.ts",
+  "index.js",
+]
+`;
