@@ -36,7 +36,8 @@
     "lib",
     "src",
     "examples",
-    "styleguide"
+    "styleguide",
+    "typings"
   ],
   "homepage": "https://github.com/buildo/react-autosize-textarea",
   "devDependencies": {
