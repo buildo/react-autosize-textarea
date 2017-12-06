@@ -5,11 +5,14 @@ import * as _getLineHeight from 'line-height';
 
 const getLineHeight = _getLineHeight as (element: HTMLElement) => number | null;
 
-export type TextareaAutosizeRequiredProps = React.TextareaHTMLAttributes<HTMLTextAreaElement> & {
+export type TextareaAutosizeRequiredProps = React.HTMLProps<HTMLTextAreaElement> & {
+  /** Called whenever the textarea resizes */
   onResize?: (e: React.SyntheticEvent<Event>) => void,
-  onChange?: (e: React.SyntheticEvent<HTMLTextAreaElement>) => void,
-  // rows is already typed in `React.TextareaHTMLAttributes<HTMLTextAreaElement>`
+  /** Minimum number of visible rows */
+  rows?: React.HTMLProps<HTMLTextAreaElement>['rows']
+  /** Maximum number of visible rows */
   maxRows?: number,
+  /** Called with the ref to the DOM node */
   innerRef?: (textarea: HTMLTextAreaElement) => void
 }
 
