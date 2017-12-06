@@ -3,6 +3,7 @@
   "version": "1.0.1",
   "description": "replacement for built-in textarea which auto resizes itself",
   "main": "lib",
+  "typings": "lib",
   "scripts": {
     "test": "jest",
     "build": "rm -rf lib && mkdir lib && tsc",
