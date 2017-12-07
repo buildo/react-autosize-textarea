@@ -1,6 +1,12 @@
 #  Change Log
 
+## [Unreleased](https://github.com/buildo/react-autosize-textarea/tree/HEAD)
+[Full Changelog](https://github.com/buildo/react-autosize-textarea/compare/v1.0.1...HEAD)
 
+#### Fixes (bugs & defects):
+
+- TS Types can't be found by VSCode/tsc [#82](https://github.com/buildo/react-autosize-textarea/issues/82)
+- TextareaAutosize.Props type annotations are not working in VSCode [#80](https://github.com/buildo/react-autosize-textarea/issues/80)
 
 ## [v1.0.1](https://github.com/buildo/react-autosize-textarea/tree/v1.0.1) (2017-12-04)
 [Full Changelog](https://github.com/buildo/react-autosize-textarea/compare/v1.0.0...v1.0.1)
