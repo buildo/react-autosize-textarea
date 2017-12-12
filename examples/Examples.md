@@ -17,6 +17,24 @@
 />
 ```
 
+#### Maximum height
+
+using `maxRows`
+```js
+<TextareaAutosize
+  maxRows={3}
+  defaultValue={'this\nis\na\nlong\ninitial\ntext'}
+/>
+```
+
+using `maxHeight`
+```js
+<TextareaAutosize
+  style={{ maxHeight: 100, boxSizing: 'border-box' }}
+  defaultValue={'this\nis\na\nlong\ninitial\ntext'}
+/>
+```
+
 #### Prefilled
 
 ```js

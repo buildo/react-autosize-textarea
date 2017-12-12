@@ -63,12 +63,14 @@ export default class TextareaAutosize extends React.Component<TextareaAutosize.P
 
     if (typeof maxRows === 'number') {
       this.updateLineHeight();
-
-      // this trick is needed to force "autosize" to activate the scrollbar
-      setTimeout(() => autosize(this.textarea));
-    } else {
-      autosize(this.textarea);
     }
+
+    /*
+      the defer is needed to:
+        - force "autosize" to activate the scrollbar when this.props.maxRows is passed
+        - support StyledComponents (see #71)
+    */
+    setTimeout(() => autosize(this.textarea));
 
     if (onResize) {
       this.textarea.addEventListener(RESIZED, onResize as any);
