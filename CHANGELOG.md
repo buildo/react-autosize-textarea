@@ -2,6 +2,13 @@
 
 
 
+## [v3.0.0](https://github.com/buildo/react-autosize-textarea/tree/v3.0.0) (2017-12-12)
+[Full Changelog](https://github.com/buildo/react-autosize-textarea/compare/v2.0.0...v3.0.0)
+
+#### Breaking:
+
+- Wrong initial height when using StyledComponents [#71](https://github.com/buildo/react-autosize-textarea/issues/71)
+
 ## [v2.0.0](https://github.com/buildo/react-autosize-textarea/tree/v2.0.0) (2017-12-07)
 [Full Changelog](https://github.com/buildo/react-autosize-textarea/compare/v1.0.2...v2.0.0)
 

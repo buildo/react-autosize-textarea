@@ -1,6 +1,6 @@
 {
   "name": "react-autosize-textarea",
-  "version": "2.0.0",
+  "version": "3.0.0",
   "description": "replacement for built-in textarea which auto resizes itself",
   "main": "lib",
   "typings": "lib",
