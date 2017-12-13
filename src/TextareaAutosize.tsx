@@ -121,12 +121,16 @@ export default class TextareaAutosize extends React.Component<TextareaAutosize.P
       saveDOMNodeRef
     } = this;
 
-    const maxHeight = maxRows && lineHeight ? lineHeight * maxRows : null;
+    const maxHeight = typeof maxRows !== 'undefined' && lineHeight ? lineHeight * maxRows : null;
 
     return {
       ...props,
       saveDOMNodeRef,
-      style: maxHeight ? { ...style, maxHeight } : style,
+      style: maxHeight ? {
+        boxSizing: typeof maxRows !== 'undefined' ? 'content-box' : undefined,
+        ...style,
+        maxHeight
+      } : style,
       onChange: this.onChange
     };
   }
