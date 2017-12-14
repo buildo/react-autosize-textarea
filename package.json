@@ -72,7 +72,7 @@
   "dependencies": {
     "@types/autosize": "3.0.6",
     "@types/prop-types": "15.5.2",
-    "@types/react": "15.6.7",
+    "@types/react": "16.0.30",
     "autosize": "^4.0.0",
     "line-height": "^0.3.1",
     "prop-types": "^15.5.6"
