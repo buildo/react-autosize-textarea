@@ -2,6 +2,13 @@
 
 
 
+## [v3.0.1](https://github.com/buildo/react-autosize-textarea/tree/v3.0.1) (2017-12-29)
+[Full Changelog](https://github.com/buildo/react-autosize-textarea/compare/v3.0.0...v3.0.1)
+
+#### New features:
+
+- Update "@types/react" to v16.0.30 [#89](https://github.com/buildo/react-autosize-textarea/issues/89)
+
 ## [v3.0.0](https://github.com/buildo/react-autosize-textarea/tree/v3.0.0) (2017-12-12)
 [Full Changelog](https://github.com/buildo/react-autosize-textarea/compare/v2.0.0...v3.0.0)
 
