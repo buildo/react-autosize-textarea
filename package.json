@@ -41,8 +41,11 @@
   ],
   "homepage": "https://github.com/buildo/react-autosize-textarea",
   "devDependencies": {
+    "@types/autosize": "3.0.6",
     "@types/jest": "21.1.8",
     "@types/node": "8.0.54",
+    "@types/prop-types": "15.5.2",
+    "@types/react": "16.0.30",
     "babel-loader": "^7.1.2",
     "babel-preset-buildo": "^0.1.1",
     "css-loader": "^0.28.5",
@@ -70,9 +73,6 @@
     "react-dom": "^0.14.0 || ^15.0.0 || ^16.0.0"
   },
   "dependencies": {
-    "@types/autosize": "3.0.6",
-    "@types/prop-types": "15.5.2",
-    "@types/react": "16.0.30",
     "autosize": "^4.0.0",
     "line-height": "^0.3.1",
     "prop-types": "^15.5.6"
