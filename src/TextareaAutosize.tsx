@@ -13,7 +13,7 @@ export type TextareaAutosizeRequiredProps = React.HTMLProps<HTMLTextAreaElement>
   /** Maximum number of visible rows */
   maxRows?: number,
   /** Called with the ref to the DOM node */
-  innerRef?: (textarea: HTMLTextAreaElement) => void
+  innerRef?: (textarea: HTMLTextAreaElement | null) => void
 }
 
 export type TextareaAutosizeDefaultProps = {
@@ -104,14 +104,16 @@ export default class TextareaAutosize extends React.Component<TextareaAutosize.P
     onChange && onChange(e);
   }
 
-  saveDOMNodeRef = (ref: HTMLTextAreaElement) => {
+  saveDOMNodeRef = (ref: HTMLTextAreaElement | null) => {
     const { innerRef } = this.props;
 
     if (innerRef) {
       innerRef(ref);
     }
 
-    this.textarea = ref;
+    if (ref) {
+      this.textarea = ref;
+    }
   }
 
   getLocals = () => {
