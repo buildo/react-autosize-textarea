@@ -11,6 +11,9 @@ module.exports = {
 
   // content
   title: 'react-autosize-textarea',
+  compilerConfig: {
+    transforms: { dangerousTaggedTemplateString: true }
+  },
   // assetsDir: 'styleguide/assets',
   template: 'styleguide/index.html',
   propsParser: require('react-docgen-typescript').parse, // detect docs using TS information
