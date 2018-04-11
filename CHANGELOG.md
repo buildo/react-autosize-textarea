@@ -2,6 +2,13 @@
 
 
 
+## [v3.0.3](https://github.com/buildo/react-autosize-textarea/tree/v3.0.3) (2018-04-11)
+[Full Changelog](https://github.com/buildo/react-autosize-textarea/compare/v3.0.2...v3.0.3)
+
+#### Fixes (bugs & defects):
+
+- Changing number of rows doesn't update styles [#100](https://github.com/buildo/react-autosize-textarea/issues/100)
+
 ## [v3.0.2](https://github.com/buildo/react-autosize-textarea/tree/v3.0.2) (2018-01-22)
 [Full Changelog](https://github.com/buildo/react-autosize-textarea/compare/v3.0.1...v3.0.2)
 
