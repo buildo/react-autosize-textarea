@@ -2,6 +2,13 @@
 
 
 
+## [v4.0.0](https://github.com/buildo/react-autosize-textarea/tree/v4.0.0) (2018-06-18)
+[Full Changelog](https://github.com/buildo/react-autosize-textarea/compare/v3.0.3...v4.0.0)
+
+#### Breaking:
+
+- Regression: textarea ‘jumps’ after initial load [#95](https://github.com/buildo/react-autosize-textarea/issues/95)
+
 ## [v3.0.3](https://github.com/buildo/react-autosize-textarea/tree/v3.0.3) (2018-04-11)
 [Full Changelog](https://github.com/buildo/react-autosize-textarea/compare/v3.0.2...v3.0.3)
 
