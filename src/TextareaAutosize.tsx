@@ -14,10 +14,16 @@ export type TextareaAutosizeRequiredProps = React.HTMLProps<HTMLTextAreaElement>
   maxRows?: number,
   /** Called with the ref to the DOM node */
   innerRef?: (textarea: HTMLTextAreaElement) => void
+  /** Initialize `autosize` asynchronously.
+   * Enable it if you are using StyledComponents
+   * This is forced to true when `maxRows` is set.
+   */
+  async?: boolean
 }
 
 export type TextareaAutosizeDefaultProps = {
   rows: number
+  async: boolean
 }
 
 export namespace TextareaAutosize {
@@ -41,14 +47,16 @@ const RESIZED: EventType = 'autosize:resized';
 export default class TextareaAutosize extends React.Component<TextareaAutosize.Props, State> {
 
   static defaultProps: TextareaAutosizeDefaultProps = {
-    rows: 1
+    rows: 1,
+    async: false
   };
 
   static propTypes: { [key in keyof TextareaAutosize.Props]: PropTypes.Requireable<any> } = {
     rows: PropTypes.number,
     maxRows: PropTypes.number,
     onResize: PropTypes.func,
-    innerRef: PropTypes.func
+    innerRef: PropTypes.func,
+    async: PropTypes.bool
   }
 
   state = {
@@ -59,18 +67,22 @@ export default class TextareaAutosize extends React.Component<TextareaAutosize.P
   currentValue: TextareaAutosize.Props['value']
 
   componentDidMount() {
-    const { onResize, maxRows } = this.props;
+    const { onResize, maxRows, async } = this.props;
 
     if (typeof maxRows === 'number') {
       this.updateLineHeight();
     }
 
-    /*
-      the defer is needed to:
-        - force "autosize" to activate the scrollbar when this.props.maxRows is passed
-        - support StyledComponents (see #71)
-    */
-    setTimeout(() => autosize(this.textarea));
+    if(typeof maxRows === "number" || async) {
+      /*
+        the defer is needed to:
+          - force "autosize" to activate the scrollbar when this.props.maxRows is passed
+          - support StyledComponents (see #71)
+      */
+      setTimeout(() => autosize(this.textarea));
+    } else {
+      autosize(this.textarea)
+    }
 
     if (onResize) {
       this.textarea.addEventListener(RESIZED, onResize as any);

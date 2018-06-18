@@ -34,6 +34,7 @@ In addition to them, `TextareaAutosize` comes with some optional custom `props` 
 | **onResize** | <code>Function</code> |  | *optional*. Called whenever the textarea resizes |
 | **rows** | <code>Number</code> |  | *optional*. Minimum number of visible rows |
 | **maxRows** | <code>Number</code> |  | *optional*. Maximum number of visible rows |
+| **async** | <code>Boolean</code> | <code>false</code> | *optional*. Initialize `autosize` asynchronously. Enable it if you are using StyledComponents. This is forced to true when `maxRows` is set. Async initialization will make your page "jump" when the component appears, as it will first be rendered with the normal size, then resized to content.
 
 
 #### `onResize`

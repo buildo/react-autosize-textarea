@@ -2,6 +2,7 @@
 
 exports[`TextareaAutosize renders correctly 1`] = `
 <textarea
+  async={false}
   defaultValue="Initial Value"
   onChange={[Function]}
   rows={1}
