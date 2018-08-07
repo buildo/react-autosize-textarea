@@ -5,33 +5,33 @@ import * as _getLineHeight from 'line-height';
 
 const getLineHeight = _getLineHeight as (element: HTMLElement) => number | null;
 
-export type TextareaAutosizeRequiredProps = React.HTMLProps<HTMLTextAreaElement> & {
-  /** Called whenever the textarea resizes */
-  onResize?: (e: React.SyntheticEvent<Event>) => void,
-  /** Minimum number of visible rows */
-  rows?: React.HTMLProps<HTMLTextAreaElement>['rows']
-  /** Maximum number of visible rows */
-  maxRows?: number,
-  /** Called with the ref to the DOM node */
-  innerRef?: (textarea: HTMLTextAreaElement) => void
-  /** Initialize `autosize` asynchronously.
-   * Enable it if you are using StyledComponents
-   * This is forced to true when `maxRows` is set.
-   */
-  async?: boolean
-}
-
-export type TextareaAutosizeDefaultProps = {
-  rows: number
-  async: boolean
-}
-
-export namespace TextareaAutosize {
-  export type Props = TextareaAutosizeRequiredProps & Partial<TextareaAutosizeDefaultProps>;
-}
-
-export type State = {
-  lineHeight: number | null
+namespace TextareaAutosize {
+  export type RequiredProps = Pick<
+    React.HTMLProps<HTMLTextAreaElement>,
+    Exclude<keyof React.HTMLProps<HTMLTextAreaElement>, 'ref'>
+  > & {
+    /** Called whenever the textarea resizes */
+    onResize?: (e: React.SyntheticEvent<Event>) => void,
+    /** Minimum number of visible rows */
+    rows?: React.HTMLProps<HTMLTextAreaElement>['rows']
+    /** Maximum number of visible rows */
+    maxRows?: number,
+    /** Called with the ref to the DOM node */
+    innerRef?: (textarea: HTMLTextAreaElement) => void
+    /** Initialize `autosize` asynchronously.
+     * Enable it if you are using StyledComponents
+     * This is forced to true when `maxRows` is set.
+     */
+    async?: boolean
+  }
+  export type DefaultProps = {
+    rows: number
+    async: boolean
+  }
+  export type Props = RequiredProps & Partial<DefaultProps>;
+  export type State = {
+    lineHeight: number | null
+  }
 }
 
 type EventType = 'autosize:update' | 'autosize:destroy' | 'autosize:resized';
@@ -44,9 +44,9 @@ const RESIZED: EventType = 'autosize:resized';
  * A light replacement for built-in textarea component
  * which automaticaly adjusts its height to match the content
  */
-export default class TextareaAutosize extends React.Component<TextareaAutosize.Props, State> {
+class TextareaAutosize extends React.Component<TextareaAutosize.Props, TextareaAutosize.State> {
 
-  static defaultProps: TextareaAutosizeDefaultProps = {
+  static defaultProps: TextareaAutosize.DefaultProps = {
     rows: 1,
     async: false
   };
@@ -159,3 +159,5 @@ export default class TextareaAutosize extends React.Component<TextareaAutosize.P
   }
 
 }
+
+export default TextareaAutosize;
