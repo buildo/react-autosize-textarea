@@ -44,7 +44,7 @@ const RESIZED: EventType = 'autosize:resized';
  * A light replacement for built-in textarea component
  * which automaticaly adjusts its height to match the content
  */
-class TextareaAutosize extends React.Component<TextareaAutosize.Props, TextareaAutosize.State> {
+export class TextareaAutosize extends React.Component<TextareaAutosize.Props, TextareaAutosize.State> {
 
   static defaultProps: TextareaAutosize.DefaultProps = {
     rows: 1,
