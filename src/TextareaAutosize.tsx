@@ -5,7 +5,7 @@ import * as _getLineHeight from 'line-height';
 
 const getLineHeight = _getLineHeight as (element: HTMLElement) => number | null;
 
-namespace TextareaAutosize {
+export namespace TextareaAutosize {
   export type RequiredProps = Pick<
     React.HTMLProps<HTMLTextAreaElement>,
     Exclude<keyof React.HTMLProps<HTMLTextAreaElement>, 'ref'>
