@@ -159,5 +159,3 @@ export class TextareaAutosize extends React.Component<TextareaAutosize.Props, Te
   }
 
 }
-
-export default TextareaAutosize;
