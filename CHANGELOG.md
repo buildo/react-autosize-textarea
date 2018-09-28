@@ -2,6 +2,17 @@
 
 
 
+## [v5.0.0](https://github.com/buildo/react-autosize-textarea/tree/v5.0.0) (2018-09-28)
+[Full Changelog](https://github.com/buildo/react-autosize-textarea/compare/v4.0.0...v5.0.0)
+
+#### New features:
+
+- Fix namespace export [#107](https://github.com/buildo/react-autosize-textarea/issues/107)
+
+#### Breaking:
+
+- Component `Props` type incorrectly includes `ref` [#104](https://github.com/buildo/react-autosize-textarea/issues/104)
+
 ## [v4.0.0](https://github.com/buildo/react-autosize-textarea/tree/v4.0.0) (2018-06-18)
 [Full Changelog](https://github.com/buildo/react-autosize-textarea/compare/v3.0.3...v4.0.0)
 
