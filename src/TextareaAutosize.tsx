@@ -98,10 +98,21 @@ export class TextareaAutosize extends React.Component<TextareaAutosize.Props, Te
   }
 
   dispatchEvent = (EVENT_TYPE: EventType) => {
-    const event = document.createEvent('Event');
-    event.initEvent(EVENT_TYPE, true, false);
+    switch (EVENT_TYPE) {
+        case UPDATE:
+            autosize.update(this.textarea);
+            break;
+        case DESTROY:
+            autosize.destroy(this.textarea);
+            break;
+        case RESIZED:
+            const event = document.createEvent('Event');
+            event.initEvent(RESIZED, true, false);
 
-    this.textarea.dispatchEvent(event);
+            this.textarea.dispatchEvent(event);
+        default:
+            break;
+    }
   };
 
   updateLineHeight = () => {
