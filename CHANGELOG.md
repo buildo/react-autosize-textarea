@@ -2,6 +2,17 @@
 
 
 
+## [v5.0.1](https://github.com/buildo/react-autosize-textarea/tree/v5.0.1) (2018-12-03)
+[Full Changelog](https://github.com/buildo/react-autosize-textarea/compare/v5.0.0...v5.0.1)
+
+#### New features:
+
+- Bad performance for a controlled component for continuous text updates [#113](https://github.com/buildo/react-autosize-textarea/issues/113)
+
+#### Fixes (bugs & defects):
+
+- Disabled textareas don't get resized (FF + IE) [#17](https://github.com/buildo/react-autosize-textarea/issues/17)
+
 ## [v5.0.0](https://github.com/buildo/react-autosize-textarea/tree/v5.0.0) (2018-09-28)
 [Full Changelog](https://github.com/buildo/react-autosize-textarea/compare/v4.0.0...v5.0.0)
 
