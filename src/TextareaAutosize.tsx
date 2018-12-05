@@ -62,8 +62,14 @@ export class TextareaAutosize extends React.Component<TextareaAutosize.Props, Te
   textarea: HTMLTextAreaElement
   currentValue: TextareaAutosize.Props['value']
 
+  onResize = (e: Event): void => {
+    if (this.props.onResize) {
+      this.props.onResize(e);
+    }
+  }
+
   componentDidMount() {
-    const { onResize, maxRows, async } = this.props;
+    const { maxRows, async } = this.props;
 
     if (typeof maxRows === 'number') {
       this.updateLineHeight();
@@ -80,16 +86,11 @@ export class TextareaAutosize extends React.Component<TextareaAutosize.Props, Te
       autosize(this.textarea)
     }
 
-    if (onResize) {
-      this.textarea.addEventListener(RESIZED, onResize);
-    }
+    this.textarea.addEventListener(RESIZED, this.onResize);
   }
 
   componentWillUnmount() {
-    const { onResize } = this.props;
-    if (onResize) {
-      this.textarea.removeEventListener(RESIZED, onResize);
-    }
+    this.textarea.removeEventListener(RESIZED, this.onResize);
     autosize.destroy(this.textarea);
   }
 
