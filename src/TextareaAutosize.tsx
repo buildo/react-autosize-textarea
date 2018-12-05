@@ -34,11 +34,7 @@ export namespace TextareaAutosize {
   }
 }
 
-type EventType = 'autosize:update' | 'autosize:destroy' | 'autosize:resized';
-
-const UPDATE: EventType = 'autosize:update';
-const DESTROY: EventType = 'autosize:destroy';
-const RESIZED: EventType = 'autosize:resized';
+const RESIZED = 'autosize:resized';
 
 /**
  * A light replacement for built-in textarea component
@@ -94,26 +90,8 @@ export class TextareaAutosize extends React.Component<TextareaAutosize.Props, Te
     if (onResize) {
       this.textarea.removeEventListener(RESIZED, onResize as any);
     }
-    this.dispatchEvent(DESTROY);
+    autosize.destroy(this.textarea);
   }
-
-  dispatchEvent = (EVENT_TYPE: EventType) => {
-    switch (EVENT_TYPE) {
-        case UPDATE:
-            autosize.update(this.textarea);
-            break;
-        case DESTROY:
-            autosize.destroy(this.textarea);
-            break;
-        case RESIZED:
-            const event = document.createEvent('Event');
-            event.initEvent(RESIZED, true, false);
-
-            this.textarea.dispatchEvent(event);
-        default:
-            break;
-    }
-  };
 
   updateLineHeight = () => {
     this.setState({
@@ -164,7 +142,7 @@ export class TextareaAutosize extends React.Component<TextareaAutosize.Props, Te
   }
 
   componentDidUpdate() {
-    this.dispatchEvent(UPDATE);
+    autosize.update(this.textarea);
   }
 
 }
