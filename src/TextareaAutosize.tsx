@@ -11,7 +11,7 @@ export namespace TextareaAutosize {
     Exclude<keyof React.HTMLProps<HTMLTextAreaElement>, 'ref'>
   > & {
     /** Called whenever the textarea resizes */
-    onResize?: (e: React.SyntheticEvent<Event>) => void,
+    onResize?: (e: Event) => void,
     /** Minimum number of visible rows */
     rows?: React.HTMLProps<HTMLTextAreaElement>['rows']
     /** Maximum number of visible rows */
@@ -81,14 +81,14 @@ export class TextareaAutosize extends React.Component<TextareaAutosize.Props, Te
     }
 
     if (onResize) {
-      this.textarea.addEventListener(RESIZED, onResize as any);
+      this.textarea.addEventListener(RESIZED, onResize);
     }
   }
 
   componentWillUnmount() {
     const { onResize } = this.props;
     if (onResize) {
-      this.textarea.removeEventListener(RESIZED, onResize as any);
+      this.textarea.removeEventListener(RESIZED, onResize);
     }
     autosize.destroy(this.textarea);
   }
