@@ -163,10 +163,8 @@ export class TextareaAutosize extends React.Component<TextareaAutosize.Props, Te
     );
   }
 
-  componentDidUpdate(prevProps: TextareaAutosize.Props) {
-    if (this.props.value !== this.currentValue || this.props.rows !== prevProps.rows) {
-      this.dispatchEvent(UPDATE);
-    }
+  componentDidUpdate() {
+    this.dispatchEvent(UPDATE);
   }
 
 }
