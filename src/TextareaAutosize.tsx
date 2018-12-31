@@ -11,7 +11,7 @@ export namespace TextareaAutosize {
     Exclude<keyof React.HTMLProps<HTMLTextAreaElement>, 'ref'>
   > & {
     /** Called whenever the textarea resizes */
-    onResize?: (e: React.SyntheticEvent<Event>) => void,
+    onResize?: (e: Event) => void,
     /** Minimum number of visible rows */
     rows?: React.HTMLProps<HTMLTextAreaElement>['rows']
     /** Maximum number of visible rows */
@@ -34,11 +34,7 @@ export namespace TextareaAutosize {
   }
 }
 
-type EventType = 'autosize:update' | 'autosize:destroy' | 'autosize:resized';
-
-const UPDATE: EventType = 'autosize:update';
-const DESTROY: EventType = 'autosize:destroy';
-const RESIZED: EventType = 'autosize:resized';
+const RESIZED = 'autosize:resized';
 
 /**
  * A light replacement for built-in textarea component
@@ -63,11 +59,17 @@ export class TextareaAutosize extends React.Component<TextareaAutosize.Props, Te
     lineHeight: null
   }
 
-  textarea: HTMLTextAreaElement
+  textarea: HTMLTextAreaElement | null
   currentValue: TextareaAutosize.Props['value']
 
+  onResize = (e: Event): void => {
+    if (this.props.onResize) {
+      this.props.onResize(e);
+    }
+  }
+
   componentDidMount() {
-    const { onResize, maxRows, async } = this.props;
+    const { maxRows, async } = this.props;
 
     if (typeof maxRows === 'number') {
       this.updateLineHeight();
@@ -79,46 +81,29 @@ export class TextareaAutosize extends React.Component<TextareaAutosize.Props, Te
           - force "autosize" to activate the scrollbar when this.props.maxRows is passed
           - support StyledComponents (see #71)
       */
-      setTimeout(() => autosize(this.textarea));
+      setTimeout(() => this.textarea && autosize(this.textarea));
     } else {
-      autosize(this.textarea)
+      this.textarea && autosize(this.textarea)
     }
 
-    if (onResize) {
-      this.textarea.addEventListener(RESIZED, onResize as any);
+    if (this.textarea) {
+      this.textarea.addEventListener(RESIZED, this.onResize);
     }
   }
 
   componentWillUnmount() {
-    const { onResize } = this.props;
-    if (onResize) {
-      this.textarea.removeEventListener(RESIZED, onResize as any);
+    if (this.textarea) {
+      this.textarea.removeEventListener(RESIZED, this.onResize);
+      autosize.destroy(this.textarea);
     }
-    this.dispatchEvent(DESTROY);
   }
 
-  dispatchEvent = (EVENT_TYPE: EventType) => {
-    switch (EVENT_TYPE) {
-        case UPDATE:
-            autosize.update(this.textarea);
-            break;
-        case DESTROY:
-            autosize.destroy(this.textarea);
-            break;
-        case RESIZED:
-            const event = document.createEvent('Event');
-            event.initEvent(RESIZED, true, false);
-
-            this.textarea.dispatchEvent(event);
-        default:
-            break;
-    }
-  };
-
   updateLineHeight = () => {
-    this.setState({
-      lineHeight: getLineHeight(this.textarea)
-    });
+    if (this.textarea) {
+      this.setState({
+        lineHeight: getLineHeight(this.textarea)
+      });
+    }
   }
 
   onChange = (e: React.SyntheticEvent<HTMLTextAreaElement>) => {
@@ -127,14 +112,16 @@ export class TextareaAutosize extends React.Component<TextareaAutosize.Props, Te
     onChange && onChange(e);
   }
 
-  saveDOMNodeRef = (ref: HTMLTextAreaElement) => {
-    const { innerRef } = this.props;
+  saveDOMNodeRef = (ref: HTMLTextAreaElement | null) => {
+    if (ref) {
+      const { innerRef } = this.props;
 
-    if (innerRef) {
-      innerRef(ref);
+      if (innerRef) {
+        innerRef(ref);
+      }
+
+      this.textarea = ref;
     }
-
-    this.textarea = ref;
   }
 
   getLocals = () => {
@@ -164,7 +151,7 @@ export class TextareaAutosize extends React.Component<TextareaAutosize.Props, Te
   }
 
   componentDidUpdate() {
-    this.dispatchEvent(UPDATE);
+    this.textarea && autosize.update(this.textarea);
   }
 
 }
