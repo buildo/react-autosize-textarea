@@ -59,7 +59,7 @@ export class TextareaAutosize extends React.Component<TextareaAutosize.Props, Te
     lineHeight: null
   }
 
-  textarea: HTMLTextAreaElement
+  textarea: HTMLTextAreaElement | null
   currentValue: TextareaAutosize.Props['value']
 
   onResize = (e: Event): void => {
@@ -81,23 +81,29 @@ export class TextareaAutosize extends React.Component<TextareaAutosize.Props, Te
           - force "autosize" to activate the scrollbar when this.props.maxRows is passed
           - support StyledComponents (see #71)
       */
-      setTimeout(() => autosize(this.textarea));
+      setTimeout(() => this.textarea && autosize(this.textarea));
     } else {
-      autosize(this.textarea)
+      this.textarea && autosize(this.textarea)
     }
 
-    this.textarea.addEventListener(RESIZED, this.onResize);
+    if (this.textarea) {
+      this.textarea.addEventListener(RESIZED, this.onResize);
+    }
   }
 
   componentWillUnmount() {
-    this.textarea.removeEventListener(RESIZED, this.onResize);
-    autosize.destroy(this.textarea);
+    if (this.textarea) {
+      this.textarea.removeEventListener(RESIZED, this.onResize);
+      autosize.destroy(this.textarea);
+    }
   }
 
   updateLineHeight = () => {
-    this.setState({
-      lineHeight: getLineHeight(this.textarea)
-    });
+    if (this.textarea) {
+      this.setState({
+        lineHeight: getLineHeight(this.textarea)
+      });
+    }
   }
 
   onChange = (e: React.SyntheticEvent<HTMLTextAreaElement>) => {
@@ -106,14 +112,16 @@ export class TextareaAutosize extends React.Component<TextareaAutosize.Props, Te
     onChange && onChange(e);
   }
 
-  saveDOMNodeRef = (ref: HTMLTextAreaElement) => {
-    const { innerRef } = this.props;
+  saveDOMNodeRef = (ref: HTMLTextAreaElement | null) => {
+    if (ref) {
+      const { innerRef } = this.props;
 
-    if (innerRef) {
-      innerRef(ref);
+      if (innerRef) {
+        innerRef(ref);
+      }
+
+      this.textarea = ref;
     }
-
-    this.textarea = ref;
   }
 
   getLocals = () => {
@@ -143,7 +151,7 @@ export class TextareaAutosize extends React.Component<TextareaAutosize.Props, Te
   }
 
   componentDidUpdate() {
-    autosize.update(this.textarea);
+    this.textarea && autosize.update(this.textarea);
   }
 
 }
