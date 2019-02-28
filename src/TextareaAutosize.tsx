@@ -16,8 +16,6 @@ export namespace TextareaAutosize {
     rows?: React.HTMLProps<HTMLTextAreaElement>["rows"];
     /** Maximum number of visible rows */
     maxRows?: number;
-    /** Called with the ref to the DOM node */
-    innerRef?: (textarea: HTMLTextAreaElement) => void;
     /** Initialize `autosize` asynchronously.
      * Enable it if you are using StyledComponents
      * This is forced to true when `maxRows` is set.
@@ -36,12 +34,16 @@ export namespace TextareaAutosize {
 
 const RESIZED = "autosize:resized";
 
+type InnerProps = TextareaAutosize.Props & {
+  innerRef?: React.RefObject<HTMLTextAreaElement>;
+};
+
 /**
  * A light replacement for built-in textarea component
  * which automaticaly adjusts its height to match the content
  */
-export class TextareaAutosize extends React.Component<
-  TextareaAutosize.Props,
+class TextareaAutosizeClass extends React.Component<
+  InnerProps,
   TextareaAutosize.State
 > {
   static defaultProps: TextareaAutosize.DefaultProps = {
@@ -50,7 +52,7 @@ export class TextareaAutosize extends React.Component<
   };
 
   static propTypes: {
-    [key in keyof TextareaAutosize.Props]: PropTypes.Requireable<any>
+    [key in keyof InnerProps]: PropTypes.Requireable<any>
   } = {
     rows: PropTypes.number,
     maxRows: PropTypes.number,
@@ -63,8 +65,8 @@ export class TextareaAutosize extends React.Component<
     lineHeight: null
   };
 
-  textarea: HTMLTextAreaElement | null;
-  currentValue: TextareaAutosize.Props["value"];
+  textarea = this.props.innerRef || React.createRef<HTMLTextAreaElement>();
+  currentValue: InnerProps["value"];
 
   onResize = (e: Event): void => {
     if (this.props.onResize) {
@@ -85,27 +87,29 @@ export class TextareaAutosize extends React.Component<
           - force "autosize" to activate the scrollbar when this.props.maxRows is passed
           - support StyledComponents (see #71)
       */
-      setTimeout(() => this.textarea && autosize(this.textarea));
+      setTimeout(
+        () => this.textarea.current && autosize(this.textarea.current)
+      );
     } else {
-      this.textarea && autosize(this.textarea);
+      this.textarea.current && autosize(this.textarea.current);
     }
 
-    if (this.textarea) {
-      this.textarea.addEventListener(RESIZED, this.onResize);
+    if (this.textarea.current) {
+      this.textarea.current.addEventListener(RESIZED, this.onResize);
     }
   }
 
   componentWillUnmount() {
-    if (this.textarea) {
-      this.textarea.removeEventListener(RESIZED, this.onResize);
-      autosize.destroy(this.textarea);
+    if (this.textarea.current) {
+      this.textarea.current.removeEventListener(RESIZED, this.onResize);
+      autosize.destroy(this.textarea.current);
     }
   }
 
   updateLineHeight = () => {
-    if (this.textarea) {
+    if (this.textarea.current) {
       this.setState({
-        lineHeight: getLineHeight(this.textarea)
+        lineHeight: getLineHeight(this.textarea.current)
       });
     }
   };
@@ -116,45 +120,45 @@ export class TextareaAutosize extends React.Component<
     onChange && onChange(e);
   };
 
-  saveDOMNodeRef = (ref: HTMLTextAreaElement | null) => {
-    if (ref) {
-      const { innerRef } = this.props;
-
-      if (innerRef) {
-        innerRef(ref);
-      }
-
-      this.textarea = ref;
-    }
-  };
-
-  getLocals = () => {
+  render() {
+    console.log(this.props.innerRef);
     const {
-      props: { onResize, maxRows, onChange, style, innerRef, ...props },
-      state: { lineHeight },
-      saveDOMNodeRef
+      props: {
+        onResize,
+        maxRows,
+        onChange,
+        style,
+        innerRef,
+        children,
+        ...props
+      },
+      state: { lineHeight }
     } = this;
 
     const maxHeight = maxRows && lineHeight ? lineHeight * maxRows : null;
 
-    return {
-      ...props,
-      saveDOMNodeRef,
-      style: maxHeight ? { ...style, maxHeight } : style,
-      onChange: this.onChange
-    };
-  };
-
-  render() {
-    const { children, saveDOMNodeRef, ...locals } = this.getLocals();
     return (
-      <textarea {...locals} ref={saveDOMNodeRef}>
+      <textarea
+        {...props}
+        onChange={this.onChange}
+        style={maxHeight ? { ...style, maxHeight } : style}
+        ref={this.textarea}
+      >
         {children}
       </textarea>
     );
   }
 
   componentDidUpdate() {
-    this.textarea && autosize.update(this.textarea);
+    this.textarea.current && autosize.update(this.textarea.current);
   }
 }
+
+export const TextareaAutosize = React.forwardRef(
+  (
+    props: TextareaAutosize.Props,
+    ref: React.RefObject<HTMLTextAreaElement>
+  ) => {
+    return <TextareaAutosizeClass {...props} innerRef={ref || undefined} />;
+  }
+);
