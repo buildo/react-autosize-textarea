@@ -121,7 +121,6 @@ class TextareaAutosizeClass extends React.Component<
   };
 
   render() {
-    console.log(this.props.innerRef);
     const {
       props: {
         onResize,
