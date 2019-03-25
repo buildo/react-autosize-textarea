@@ -35,7 +35,7 @@ export namespace TextareaAutosize {
 const RESIZED = "autosize:resized";
 
 type InnerProps = TextareaAutosize.Props & {
-  innerRef?: React.RefObject<HTMLTextAreaElement>;
+  innerRef: React.RefObject<HTMLTextAreaElement> | null;
 };
 
 /**
@@ -57,7 +57,7 @@ class TextareaAutosizeClass extends React.Component<
     rows: PropTypes.number,
     maxRows: PropTypes.number,
     onResize: PropTypes.func,
-    innerRef: PropTypes.func,
+    innerRef: PropTypes.object,
     async: PropTypes.bool
   };
 
@@ -157,8 +157,8 @@ class TextareaAutosizeClass extends React.Component<
 export const TextareaAutosize = React.forwardRef(
   (
     props: TextareaAutosize.Props,
-    ref: React.RefObject<HTMLTextAreaElement>
+    ref: React.RefObject<HTMLTextAreaElement> | null
   ) => {
-    return <TextareaAutosizeClass {...props} innerRef={ref || undefined} />;
+    return <TextareaAutosizeClass {...props} innerRef={ref} />;
   }
 );
