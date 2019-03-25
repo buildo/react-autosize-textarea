@@ -64,3 +64,22 @@ const StyledTextarea = styled(TextareaAutosize)`
   }}
 />
 ```
+
+#### Inner ref
+
+```js
+initialState = {
+  value: '',
+  ref: React.createRef()
+};
+
+<div>
+  <TextareaAutosize
+    value={state.value}
+    onChange={e => setState({ value: e.target.value })}
+    placeholder="try writing some lines"
+    ref={state.ref}
+  />
+  {state.ref.current && <div>The textarea contains: {state.ref.current.value}</div>}
+</div>
+```
