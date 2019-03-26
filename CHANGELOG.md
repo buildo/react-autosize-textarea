@@ -2,6 +2,18 @@
 
 
 
+## [v7.0.0](https://github.com/buildo/react-autosize-textarea/tree/v7.0.0) (2019-03-26)
+[Full Changelog](https://github.com/buildo/react-autosize-textarea/compare/v6.0.0...v7.0.0)
+
+#### Fixes (bugs & defects):
+
+- onResize types are wrong [#119](https://github.com/buildo/react-autosize-textarea/issues/119)
+- onResize not called if passed when component already mounted [#118](https://github.com/buildo/react-autosize-textarea/issues/118)
+
+#### Breaking:
+
+- Support for React.createRef() refs passed to innerRef [#102](https://github.com/buildo/react-autosize-textarea/issues/102)
+
 ## [v6.0.0](https://github.com/buildo/react-autosize-textarea/tree/v6.0.0) (2018-12-06)
 [Full Changelog](https://github.com/buildo/react-autosize-textarea/compare/v5.0.1...v6.0.0)
 
