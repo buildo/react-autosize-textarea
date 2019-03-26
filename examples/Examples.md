@@ -70,6 +70,11 @@ const StyledTextarea = styled(TextareaAutosize)`
 ```js
 initialState = {
   value: '',
+  /*
+    Saving the "ref" in the state is a bad practice: you should use a `const` or a class property.
+    We're doing it as it's the only way we have to avoid
+    resetting it to "React.createRef()" at every render
+  */
   ref: React.createRef()
 };
 
