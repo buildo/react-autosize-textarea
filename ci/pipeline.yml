@@ -1,0 +1,59 @@
+resource_types:
+  - name: pull-request
+    type: docker-image
+    source:
+      repository: teliaoss/github-pr-resource
+
+resources:
+  - name: master
+    type: git
+    icon: github-circle
+    source:
+      uri: git@github.com:buildo/react-autosize-textarea
+      branch: master
+      private_key: ((private-key))
+
+  - name: pr
+    type: pull-request
+    source:
+      repository: buildo/react-autosize-textarea
+      access_token: ((github-token))
+
+jobs:
+  - name: pr-test
+    plan:
+      - get: react-autosize-textarea
+        resource: pr
+        trigger: true
+        version: every
+      - put: pr
+        params:
+          path: react-autosize-textarea
+          status: pending
+          context: concourse
+      - do:
+          - task: test
+            file: react-autosize-textarea/ci/test.yml
+            attempts: 2
+        on_success:
+          put: pr
+          params:
+            path: react-autosize-textarea
+            status: success
+            context: concourse
+        on_failure:
+          put: pr
+          params:
+            path: react-autosize-textarea
+            status: failure
+            context: concourse
+
+  - name: test
+    plan:
+      - get: react-autosize-textarea
+        resource: master
+        trigger: true
+      - do:
+          - task: test
+            file: react-autosize-textarea/ci/test.yml
+            attempts: 2
