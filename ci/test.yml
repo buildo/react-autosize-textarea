@@ -1,0 +1,17 @@
+platform: linux
+
+image_resource:
+  type: docker-image
+  source:
+    repository: node
+    tag: 8-slim
+
+inputs:
+  - name: react-autosize-textarea
+
+caches:
+  - path: react-autosize-textarea/node_modules
+
+run:
+  path: ci/test.sh
+  dir: react-autosize-textarea
