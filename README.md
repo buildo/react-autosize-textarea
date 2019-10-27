@@ -74,17 +74,21 @@ In addition to `maxHeight`, you can force `TextareaAutosize` to have a maximum n
 #### Refs to DOM nodes
 In order to manually call `textarea`'s DOM element functions like `focus()` or `blur()`, you need a ref to the DOM node.
 
-You get one by using the prop `innerRef` as shown in the example below:
+You get one by using the prop `ref` as shown in the example below:
 
 ```jsx
 class Form extends React.Component {
+  constructor() {
+    this.textarea = React.createRef()
+  }
+  
   componentDidMount() {
-    this.textarea.focus();
+    this.textarea.current.focus();
   }
 
   render() {
     return (
-      <TextareaAutosize innerRef={ref => this.textarea = ref} />
+      <TextareaAutosize ref={this.textarea} />
     );
   }
 }
