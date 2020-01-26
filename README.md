@@ -17,6 +17,9 @@ ReactDOM.renderComponent(
 ```
 npm install --save react-autosize-textarea
 ```
+```
+yarn add react-autosize-textarea
+```
 
 ## Demo
 [Live Examples](http://react-components.buildo.io/#textareaautosize)
