@@ -17,6 +17,9 @@ ReactDOM.renderComponent(
 ```
 npm install --save react-autosize-textarea
 ```
+```
+yarn add react-autosize-textarea
+```
 
 ## Demo
 [Live Examples](http://react-components.buildo.io/#textareaautosize)
@@ -35,6 +38,7 @@ In addition to them, `TextareaAutosize` comes with some optional custom `props` 
 | **rows** | <code>Number</code> |  | *optional*. Minimum number of visible rows |
 | **maxRows** | <code>Number</code> |  | *optional*. Maximum number of visible rows |
 | **async** | <code>Boolean</code> | <code>false</code> | *optional*. Initialize `autosize` asynchronously. Enable it if you are using StyledComponents. This is forced to true when `maxRows` is set. Async initialization will make your page "jump" when the component appears, as it will first be rendered with the normal size, then resized to content.
+| **ref** | <code>Function</code> |  | *optional*. Ref to the DOM node |
 
 
 #### `onResize`
