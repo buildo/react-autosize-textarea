@@ -81,7 +81,7 @@ initialState = {
 <div>
   <TextareaAutosize
     value={state.value}
-    onChange={e => setState({ value: e.target.value })}
+    onChange={e => setState({ value: e.currentTarget.value })}
     placeholder="try writing some lines"
     ref={state.ref}
   />
