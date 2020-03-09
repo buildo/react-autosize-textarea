@@ -35,7 +35,7 @@ export namespace TextareaAutosize {
 const RESIZED = "autosize:resized";
 
 type InnerProps = TextareaAutosize.Props & {
-  innerRef: React.RefObject<HTMLTextAreaElement> | null;
+  innerRef: React.Ref<HTMLTextAreaElement> | null;
 };
 
 /**
@@ -57,15 +57,15 @@ class TextareaAutosizeClass extends React.Component<
     rows: PropTypes.number,
     maxRows: PropTypes.number,
     onResize: PropTypes.func,
-    innerRef: PropTypes.object,
+    innerRef: PropTypes.any,
     async: PropTypes.bool
   };
 
-  state = {
+  state: TextareaAutosize.State = {
     lineHeight: null
   };
 
-  textarea = this.props.innerRef || React.createRef<HTMLTextAreaElement>();
+  textarea: HTMLTextAreaElement | null = null;
   currentValue: InnerProps["value"];
 
   onResize = (e: Event): void => {
@@ -88,28 +88,28 @@ class TextareaAutosizeClass extends React.Component<
           - support StyledComponents (see #71)
       */
       setTimeout(
-        () => this.textarea.current && autosize(this.textarea.current)
+        () => this.textarea && autosize(this.textarea)
       );
     } else {
-      this.textarea.current && autosize(this.textarea.current);
+      this.textarea && autosize(this.textarea);
     }
 
-    if (this.textarea.current) {
-      this.textarea.current.addEventListener(RESIZED, this.onResize);
+    if (this.textarea) {
+      this.textarea.addEventListener(RESIZED, this.onResize);
     }
   }
 
   componentWillUnmount() {
-    if (this.textarea.current) {
-      this.textarea.current.removeEventListener(RESIZED, this.onResize);
-      autosize.destroy(this.textarea.current);
+    if (this.textarea) {
+      this.textarea.removeEventListener(RESIZED, this.onResize);
+      autosize.destroy(this.textarea);
     }
   }
 
   updateLineHeight = () => {
-    if (this.textarea.current) {
+    if (this.textarea) {
       this.setState({
-        lineHeight: getLineHeight(this.textarea.current)
+        lineHeight: getLineHeight(this.textarea)
       });
     }
   };
@@ -141,7 +141,14 @@ class TextareaAutosizeClass extends React.Component<
         {...props}
         onChange={this.onChange}
         style={maxHeight ? { ...style, maxHeight } : style}
-        ref={this.textarea}
+        ref={element => {
+          this.textarea = element
+          if (typeof this.props.innerRef === 'function') {
+            this.props.innerRef(element)
+          } else if (this.props.innerRef) {
+            (this.props.innerRef as any).current = element
+          }
+        }}
       >
         {children}
       </textarea>
@@ -149,14 +156,14 @@ class TextareaAutosizeClass extends React.Component<
   }
 
   componentDidUpdate() {
-    this.textarea.current && autosize.update(this.textarea.current);
+    this.textarea && autosize.update(this.textarea);
   }
 }
 
 export const TextareaAutosize = React.forwardRef(
   (
     props: TextareaAutosize.Props,
-    ref: React.RefObject<HTMLTextAreaElement> | null
+    ref: React.Ref<HTMLTextAreaElement> | null
   ) => {
     return <TextareaAutosizeClass {...props} innerRef={ref} />;
   }
