@@ -57,7 +57,10 @@ class TextareaAutosizeClass extends React.Component<
     rows: PropTypes.number,
     maxRows: PropTypes.number,
     onResize: PropTypes.func,
-    innerRef: PropTypes.object,
+    innerRef: PropTypes.oneOfType([
+      PropTypes.func,
+      PropTypes.object
+    ]),
     async: PropTypes.bool
   };
 
