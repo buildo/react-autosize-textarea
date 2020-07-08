@@ -1,6 +1,19 @@
 #  Change Log
 
+## [Unreleased](https://github.com/buildo/react-autosize-textarea/tree/HEAD)
+[Full Changelog](https://github.com/buildo/react-autosize-textarea/compare/v7.0.0...HEAD)
 
+#### New features:
+
+- Failed prop type: Invalid prop `innerRef` of type `function` supplied to `TextareaAutosizeClass`, expected `object` [#141](https://github.com/buildo/react-autosize-textarea/issues/141)
+- onChange typescript definition problem [#137](https://github.com/buildo/react-autosize-textarea/issues/137)
+- Function passed to innerRef is never called [#135](https://github.com/buildo/react-autosize-textarea/issues/135)
+- Switch to forwardRef instead of callback style ref [#134](https://github.com/buildo/react-autosize-textarea/issues/134)
+- lose ref value after rerendering page [#133](https://github.com/buildo/react-autosize-textarea/issues/133)
+- THANK YOU! [#132](https://github.com/buildo/react-autosize-textarea/issues/132)
+- Passing a function to ref fails prop type validation [#130](https://github.com/buildo/react-autosize-textarea/issues/130)
+- Resizing text area horizontally, not vertical, is it possible ? [#126](https://github.com/buildo/react-autosize-textarea/issues/126)
+- `innerRef` shortcomings [#123](https://github.com/buildo/react-autosize-textarea/issues/123)
 
 ## [v7.0.0](https://github.com/buildo/react-autosize-textarea/tree/v7.0.0) (2019-03-26)
 [Full Changelog](https://github.com/buildo/react-autosize-textarea/compare/v6.0.0...v7.0.0)
