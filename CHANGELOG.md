@@ -5,6 +5,7 @@
 
 #### New features:
 
+- Support React 17 [#149](https://github.com/buildo/react-autosize-textarea/issues/149)
 - Failed prop type: Invalid prop `innerRef` of type `function` supplied to `TextareaAutosizeClass`, expected `object` [#141](https://github.com/buildo/react-autosize-textarea/issues/141)
 - onChange typescript definition problem [#137](https://github.com/buildo/react-autosize-textarea/issues/137)
 - Function passed to innerRef is never called [#135](https://github.com/buildo/react-autosize-textarea/issues/135)
